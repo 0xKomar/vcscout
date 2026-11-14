@@ -103,6 +103,22 @@ describe('leadNames', () => {
     expect(leadNames(['Sequoia Capital', 'Undisclosed'])).toEqual(['Sequoia Capital'])
     expect(leadNames(null)).toEqual([])
   })
+  it('does not turn a collective of experts or their employers into investors', () => {
+    const names =
+      'Cherry Ventures, Mehdi Ghissassi, and leading experts from OpenAI, Anthropic, and DeepMind'
+    expect(leadNames(names)).toEqual(['Cherry Ventures', 'Mehdi Ghissassi'])
+    expect(leadNames([
+      'Cherry Ventures',
+      'and leading experts from OpenAI',
+      'Anthropic',
+      'and DeepMind',
+    ])).toEqual(['Cherry Ventures'])
+    expect(leadNames('Accel; employees at OpenAI; Anthropic; Index Ventures')).toEqual(['Accel'])
+  })
+  it('does not interpret anonymous groups or conjunction fragments as named investors', () => {
+    expect(leadNames('Accel, several individual investors, and DeepMind')).toEqual(['Accel'])
+    expect(leadNames('Accel, OpenAI staff, Anthropic')).toEqual(['Accel'])
+  })
 })
 
 describe('sourceUrls', () => {

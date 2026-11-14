@@ -98,3 +98,179 @@ export interface IdeaQuery {
 export type Selection =
   | { type: 'fund'; kind: 'early' | 'later'; key: string; company: string; person?: Partner }
   | { type: 'lead'; fund: string; round: Round; company: string; person?: Partner }
+
+export type FactKind =
+  | 'role'
+  | 'education'
+  | 'board'
+  | 'advisor'
+  | 'angel'
+  | 'program'
+  | 'coinvestor'
+  | 'deal'
+
+export type Certainty = 'fact' | 'inferred'
+export type EvidenceOrigin = 'cala-graph' | 'cala' | 'openai'
+export interface SourceEvidence {
+  url: string
+  origin: EvidenceOrigin
+}
+
+export interface Fact {
+  kind: FactKind
+  organization: string
+  role: string
+  start: string | null
+  end: string | null
+  source_url: string
+  person?: string
+  company?: string
+  certainty?: Certainty
+  origin?: EvidenceOrigin
+  sources?: SourceEvidence[]
+}
+
+export interface MeEmployer {
+  organization: string
+  start: string
+  end: string
+}
+
+export interface MeContact {
+  name: string
+  organization: string
+  ref?: { id: string; identity: string; profile_key?: string }
+}
+
+export interface ManualPerson {
+  name: string
+  profile_url: string
+  target?: boolean
+}
+
+export interface MeInput {
+  name: string
+  linkedin_url: string
+  employers: MeEmployer[]
+  schools: string[]
+  contacts: MeContact[]
+}
+
+export interface MeProfile extends MeInput {
+  facts: Fact[]
+  hidden: string[]
+  manual_people?: ManualPerson[]
+}
+
+export interface MeResponse {
+  facts: Fact[]
+  origin: 'cache' | 'cala'
+}
+
+export interface Dossier {
+  name: string
+  fund: string
+  facts: Fact[]
+  origin: 'saved' | 'cache' | 'cala'
+  failed?: string[]
+}
+
+export type ConnectionRelationship =
+  | 'co-founder'
+  | 'colleague'
+  | 'investor'
+  | 'portfolio-founder'
+  | 'board'
+  | 'classmate'
+  | 'teammate'
+  | 'co-author'
+  | 'co-appearance'
+  | 'advisor'
+  | 'other'
+
+export type ViaType = 'company' | 'fund' | 'school' | 'event' | 'media' | 'other'
+
+export interface Connection {
+  name: string
+  role: string
+  organization: string
+  via: string
+  via_type: ViaType
+  relationship: ConnectionRelationship
+  context: string
+  date: string | null
+  source_url: string
+  profile_url?: string
+  certainty?: Certainty
+  origin?: EvidenceOrigin
+  sources?: SourceEvidence[]
+}
+
+export type OrgRelationship =
+  | 'founder'
+  | 'executive'
+  | 'employee'
+  | 'investor'
+  | 'board'
+  | 'advisor'
+  | 'organizer'
+  | 'jury'
+  | 'mentor'
+  | 'speaker'
+  | 'participant'
+  | 'alumni'
+  | 'other'
+
+export interface OrgPerson {
+  name: string
+  role: string
+  relationship: OrgRelationship
+  affiliation: string
+  start: string | null
+  end: string | null
+  source_url: string
+  profile_url?: string
+  certainty?: Certainty
+  origin?: EvidenceOrigin
+  sources?: SourceEvidence[]
+}
+
+export interface ResolvedEntity {
+  id: string
+  name: string
+  entity_type: string
+}
+
+export type NetworkExpansion =
+  | {
+      kind: 'person'
+      name: string
+      entity: ResolvedEntity | null
+      connections: Connection[]
+      facts: Fact[]
+      origin: 'cache' | 'cala' | 'graph' | 'openai'
+      failed: string[]
+    }
+  | {
+      kind: 'org'
+      name: string
+      entity: ResolvedEntity | null
+      people: OrgPerson[]
+      origin: 'cache' | 'cala' | 'graph' | 'openai'
+      failed: string[]
+    }
+
+export interface LinkedinConnection {
+  name: string
+  company: string
+  position: string
+  url: string
+}
+
+export interface RankCandidate {
+  id: string
+  label: string
+  kind: 'person' | 'org'
+  sublabel?: string
+  links: string[]
+}

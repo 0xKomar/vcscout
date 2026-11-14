@@ -1,12 +1,17 @@
 import type {
   CompanyRounds,
+  Dossier,
   FundPathsResponse,
   FoundersResponse,
   FundStage,
   LinkedinKind,
   LinkedinProfile,
+  MeInput,
+  MeResponse,
+  NetworkExpansion,
   PartnersResponse,
   PersonInvestmentsResponse,
+  RankCandidate,
   Risk,
   SimilarMatch,
 } from './types'
@@ -85,6 +90,47 @@ export function fetchLinkedin(
     '/api/linkedin',
     kind === 'startup' ? { name, company: organization } : { name, fund: organization },
   )
+}
+
+export function fetchMe(input: MeInput): Promise<MeResponse> {
+  return postJson('/api/me', {
+    name: input.name,
+    linkedin_url: input.linkedin_url,
+    employers: input.employers,
+    schools: input.schools,
+  })
+}
+
+export function fetchDossier(name: string, fund: string): Promise<Dossier> {
+  return postJson('/api/dossier', { name, fund })
+}
+
+export interface NetworkRequest {
+  kind: 'person' | 'org'
+  name: string
+  context: string
+  background?: boolean
+  deep?: boolean
+  enhance?: boolean
+  include_adjacent?: boolean
+  known: string[]
+  focus?: string[]
+  focus_people?: string[]
+  identity_orgs?: string[]
+  profile_url?: string
+  counterpart?: { name: string; context: string }
+}
+
+export function fetchNetwork(request: NetworkRequest): Promise<NetworkExpansion> {
+  return postJson('/api/network', request)
+}
+
+export function fetchRank(request: {
+  me: { name: string; context: string }
+  targets: { name: string; org: string }[]
+  candidates: RankCandidate[]
+}): Promise<{ order: string[] }> {
+  return postJson('/api/rank', request)
 }
 
 export async function fetchExamples(): Promise<{ names: string[] }> {

@@ -1,0 +1,122 @@
+[
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Piotr Gerke",
+  "connected_person_role": "Co-founder & CTO",
+  "connected_person_organization": "Minerva",
+  "organization": "Minerva",
+  "organization_type": "company",
+  "relationship": "co-founder",
+  "context": "Piotr Gerke co-founded Minerva together with Wiktor Gaweł and Maciej Stoiński in 2025, serving as CTO and AI-first technology architect.",
+  "date": "2025",
+  "source_url": "https://www.forbes.pl/biznes/ai-dla-przetargow-publicznych-minerva-za-trzy-lata-ma-byc-jednorozcem/0hjnm9x"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Maciej Stoiński",
+  "connected_person_role": "Co-founder",
+  "connected_person_organization": "Minerva",
+  "organization": "Minerva",
+  "organization_type": "company",
+  "relationship": "co-founder",
+  "context": "Maciej Stoiński co-founded Minerva with Wiktor Gaweł and Piotr Gerke, bringing managerial and operational experience from his former role at Piotr i Paweł.",
+  "date": "2025",
+  "source_url": "https://www.forbes.pl/biznes/ai-dla-przetargow-publicznych-minerva-za-trzy-lata-ma-byc-jednorozcem/0hjnm9x"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Piotr Gerke",
+  "connected_person_role": "Co-founder & CTO",
+  "connected_person_organization": "Minerva",
+  "organization": "IV Liceum Ogólnokształcące w Poznaniu",
+  "organization_type": "school",
+  "relationship": "classmate",
+  "context": "Wiktor Gaweł and Piotr Gerke knew each other from IV Liceum Ogólnokształcące w Poznaniu, as documented in Forbes.",
+  "date": null,
+  "source_url": "https://www.forbes.pl/biznes/ai-dla-przetargow-publicznych-minerva-za-trzy-lata-ma-byc-jednorozcem/0hjnm9x"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Patrik Backman",
+  "connected_person_role": "General Partner",
+  "connected_person_organization": "Open Ocean",
+  "organization": "Minerva",
+  "organization_type": "company",
+  "relationship": "investor",
+  "context": "Open Ocean VC, where Patrik Backman is General Partner, invested $3M in Minerva co-founded by Wiktor Gaweł.",
+  "date": "2025-10",
+  "source_url": "https://polandinsight.com/polish-startup-minerva-secures-3-million-to-revolutionize-public-procurement-with-ai-14747"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Tom Henriksson",
+  "connected_person_role": "General Partner",
+  "connected_person_organization": "Open Ocean",
+  "organization": "Minerva",
+  "organization_type": "company",
+  "relationship": "investor",
+  "context": "Open Ocean VC, where Tom Henriksson is General Partner, invested $3M in Minerva co-founded by Wiktor Gaweł.",
+  "date": "2025-10",
+  "source_url": "https://polandinsight.com/polish-startup-minerva-secures-3-million-to-revolutionize-public-procurement-with-ai-14747"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Ekaterina Almasque",
+  "connected_person_role": "General Partner",
+  "connected_person_organization": "Open Ocean",
+  "organization": "Minerva",
+  "organization_type": "company",
+  "relationship": "investor",
+  "context": "Open Ocean VC, where Ekaterina Almasque is General Partner, invested $3M in Minerva co-founded by Wiktor Gaweł.",
+  "date": "2025-10",
+  "source_url": "https://polandinsight.com/polish-startup-minerva-secures-3-million-to-revolutionize-public-procurement-with-ai-14747"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Michał Szudejko",
+  "connected_person_role": "Controlling Director",
+  "connected_person_organization": "Allegro",
+  "organization": "XX Kongres Controllingowy ICV POLSKA (CIA 2026)",
+  "organization_type": "event",
+  "relationship": "co-appearance",
+  "context": "Wiktor Gaweł and Michał Szudejko are both listed as speakers at the XX Kongres Controllingowy ICV POLSKA (CIA 2026) in Poznań on 16 June 2026.",
+  "date": "2026-06-16",
+  "source_url": "https://controllingintelligenceadventure.pl/speaker/wiktor-gawel"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Bartłomiej Przybylski",
+  "connected_person_role": "Data & Analytics Manager - International",
+  "connected_person_organization": "Żabka International",
+  "organization": "XX Kongres Controllingowy ICV POLSKA (CIA 2026)",
+  "organization_type": "event",
+  "relationship": "co-appearance",
+  "context": "Wiktor Gaweł and Bartłomiej Przybylski are both listed as speakers at the XX Kongres Controllingowy ICV POLSKA (CIA 2026) in Poznań on 16 June 2026.",
+  "date": "2026-06-16",
+  "source_url": "https://controllingintelligenceadventure.pl/speaker/wiktor-gawel"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Karolina Lis",
+  "connected_person_role": "Senior Director",
+  "connected_person_organization": "Hays Poland",
+  "organization": "XX Kongres Controllingowy ICV POLSKA (CIA 2026)",
+  "organization_type": "event",
+  "relationship": "co-appearance",
+  "context": "Wiktor Gaweł and Karolina Lis are both listed as speakers at the XX Kongres Controllingowy ICV POLSKA (CIA 2026) in Poznań on 16 June 2026.",
+  "date": "2026-06-16",
+  "source_url": "https://controllingintelligenceadventure.pl/speaker/maciej-szulc"
+ },
+ {
+  "person": "Wiktor Gaweł",
+  "connected_person": "Adrianna Lewandowska",
+  "connected_person_role": "Prezes i właściciel",
+  "connected_person_organization": "Instytut Biznesu Rodzinnego",
+  "organization": "XX Kongres Controllingowy ICV POLSKA (CIA 2026)",
+  "organization_type": "event",
+  "relationship": "co-appearance",
+  "context": "Wiktor Gaweł and Adrianna Lewandowska are both listed as speakers at the XX Kongres Controllingowy ICV POLSKA (CIA 2026) in Poznań on 16 June 2026.",
+  "date": "2026-06-16",
+  "source_url": "https://controllingintelligenceadventure.pl/speaker/dr-klaudia-martinek-jaguszewska"
+ }
+]

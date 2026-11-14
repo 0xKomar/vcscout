@@ -7,6 +7,8 @@ export function GraphHandles() {
     <>
       <Handle id="l" type="source" position={Position.Left} style={HANDLE_STYLE} />
       <Handle id="r" type="source" position={Position.Right} style={HANDLE_STYLE} />
+      <Handle id="t" type="source" position={Position.Top} style={HANDLE_STYLE} />
+      <Handle id="b" type="source" position={Position.Bottom} style={HANDLE_STYLE} />
     </>
   )
 }

@@ -11,16 +11,31 @@ export function sourceUrls(value: unknown): string[] {
 }
 
 export function leadNames(value: unknown): string[] {
-  return clean(value)
-    .split(/\s*[,;]\s*/)
-    .map((s) => s.trim())
-    .filter(
-      (s) =>
-        s &&
-        !/^(unknown|not disclosed|undisclosed|not specified|n\/?a|null|brak danych|angel investors?|individual investors?)$/i.test(
-          s,
-        ),
-    )
+  const names: string[] = []
+  const collective =
+    /^(?:(?:and|or|including|with|plus|alongside)\s+)?(?:(?:several|other|various|leading|industry|renowned|prominent|individual|select|unnamed|experienced|senior|former|current)\s+)*(?:experts?|(?:angel\s+)?investors?|employees?|people|executives?|founders?|engineers?|researchers?|scientists?|staff|teams?|representatives?|partners?|individuals?)\s+(?:from|at|of|working\s+(?:at|for))\b/i
+  const anonymous =
+    /^(?:(?:several|various|other|undisclosed|anonymous|unnamed|individual|angel)\s+)*(?:investors?|angels?|experts?|employees?|founders?|individuals?)$/i
+  const namedCollective =
+    /\b(?:experts?|employees?|personnel|staff|researchers?|scientists?|engineers?|executives?|team members?)$/i
+  let insideCollective = false
+  for (const part of clean(value).split(/\s*[,;]\s*/)) {
+    const name = part.trim()
+    if (!name) continue
+    if (collective.test(name) || namedCollective.test(name)) {
+      // Following names may be employers of the collective, not investors.
+      insideCollective = true
+      continue
+    }
+    if (
+      insideCollective ||
+      /^(?:and|or|including|with|plus|alongside)\s+/i.test(name) ||
+      anonymous.test(name) ||
+      /^(?:unknown|not disclosed|undisclosed|not specified|n\/?a|null|brak danych)$/i.test(name)
+    ) continue
+    names.push(name)
+  }
+  return names
 }
 
 export function roundLevel(value: unknown): number | null {

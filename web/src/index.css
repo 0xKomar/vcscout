@@ -19,6 +19,8 @@
     --color-brand: var(--brand);
     --color-brand-foreground: var(--brand-foreground);
     --color-brand-soft: var(--brand-soft);
+    --color-connection: var(--connection);
+    --color-connection-soft: var(--connection-soft);
     --color-warning: var(--warning);
     --color-warning-foreground: var(--warning-foreground);
     --color-warning-soft: var(--warning-soft);
@@ -63,53 +65,55 @@
 }
 
 :root {
-    --background: #fbfaf9;
-    --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #152636;
     --card: #ffffff;
-    --card-foreground: #171717;
+    --card-foreground: #152636;
     --popover: #ffffff;
-    --popover-foreground: #171717;
-    --primary: #171717;
-    --primary-foreground: #fbfaf9;
-    --secondary: #f2f2f0;
-    --secondary-foreground: #171717;
-    --muted: #f3f1f1;
-    --muted-foreground: #7c6d67;
-    --accent: #f3f1f1;
-    --accent-foreground: #171717;
+    --popover-foreground: #152636;
+    --primary: #163b63;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f6f8;
+    --secondary-foreground: #19364a;
+    --muted: #f3f7f9;
+    --muted-foreground: #607385;
+    --accent: #eaf4f6;
+    --accent-foreground: #19364a;
     --destructive: #e40014;
-    --border: #e8e4e3;
-    --input: #e8e4e3;
-    --ring: #aba09c;
-    --chart-1: #d8d2d0;
-    --chart-2: #7c6d67;
-    --chart-3: #5b4f4b;
-    --chart-4: #473c39;
-    --chart-5: #2b2422;
+    --border: #dfe8ed;
+    --input: #d9e5ec;
+    --ring: #76a8d1;
+    --chart-1: #b7deed;
+    --chart-2: #78c8bb;
+    --chart-3: #3997c0;
+    --chart-4: #237991;
+    --chart-5: #125069;
     --radius: 0.875rem;
-    --sidebar: #fbfaf9;
-    --sidebar-foreground: #171717;
-    --sidebar-primary: #171717;
-    --sidebar-primary-foreground: #fbfaf9;
-    --sidebar-accent: #f3f1f1;
-    --sidebar-accent-foreground: #171717;
-    --sidebar-border: #e8e4e3;
-    --sidebar-ring: #aba09c;
-    --brand: #1d9e75;
+    --sidebar: #fbfdfe;
+    --sidebar-foreground: #152636;
+    --sidebar-primary: #163b63;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #f1f6f8;
+    --sidebar-accent-foreground: #19364a;
+    --sidebar-border: #dfe8ed;
+    --sidebar-ring: #76a8d1;
+    --brand: #1769c2;
     --brand-foreground: #ffffff;
-    --brand-soft: #edf6ef;
+    --brand-soft: #eaf3fd;
+    --connection: #0c7952;
+    --connection-soft: #e3f4ec;
     --warning: #e46c12;
     --warning-foreground: #7a3a0a;
     --warning-soft: #fdf3e9;
-    --hero-glow: #c4dba6;
-    --panel: #21201e;
+    --hero-glow: #b5eadb;
+    --panel: #103755;
     --panel-foreground: #ffffff;
-    --family-1: #2f6bd8;
-    --family-2: #c13a8b;
-    --family-3: #b7791f;
-    --family-4: #7556d6;
-    --family-5: #12838f;
-    --family-6: #b4533a;
+    --family-1: #286cc4;
+    --family-2: #008968;
+    --family-3: #4b9db8;
+    --family-4: #344f95;
+    --family-5: #24a48d;
+    --family-6: #407e72;
 }
 
 @layer base {
@@ -207,5 +211,30 @@
 
   .react-flow__node > * {
     animation: none;
+  }
+}
+
+/* Warm intros network: animate node positions as the graph grows */
+.network-flow .react-flow__node {
+  transition: transform 0.35s ease;
+}
+
+.atlas-light-rays {
+  background:
+    linear-gradient(to top, rgba(28, 144, 120, 0.32), transparent 80%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 9px, transparent 9px 16px, rgba(255, 255, 255, 0.28) 16px 22px, transparent 22px 31px),
+    linear-gradient(105deg, #72cfa4 0%, #d9f3ea 38%, #e1f3ff 62%, #82b9f2 100%);
+  mask-image: linear-gradient(to top, #000 12%, rgba(0, 0, 0, 0.8) 45%, transparent 100%);
+}
+
+.atlas-canvas {
+  background-color: #fbfdfe;
+  background-image: radial-gradient(#d4e6ea 0.8px, transparent 0.8px);
+  background-size: 19px 19px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-flow .react-flow__node {
+    transition: none;
   }
 }

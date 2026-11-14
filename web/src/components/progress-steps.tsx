@@ -1,6 +1,7 @@
 import { AlertTriangle, Check, CircleDashed, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { DiscoveryState } from '@/hooks/use-discovery'
+import type { NetworkProgress as IntroProgress } from '@/hooks/use-network'
 import type { PeoplePrefetch } from '@/hooks/use-people-prefetch'
 import { plural } from '@/lib/format'
 import { cn } from '@/lib/utils'
@@ -34,10 +35,12 @@ export function ProgressSteps({
   state,
   people,
   founders,
+  intros,
 }: {
   state: DiscoveryState
   people?: PeoplePrefetch
   founders?: { settled: number; total: number; people: number }
+  intros?: IntroProgress
 }) {
   const companies = state.companies
   const completed = companies.filter((entry) => entry.status !== 'loading').length
@@ -117,14 +120,28 @@ export function ProgressSteps({
     }
   }
 
+  let introsStep: { status: StepStatus; detail: string } | null = null
+  if (intros && intros.status !== 'pending') {
+    if (intros.status === 'stopped') {
+      introsStep = { status: 'pending', detail: `Stopped (${intros.detail})` }
+    } else {
+      introsStep = {
+        status: intros.status === 'loading' ? 'loading' : 'done',
+        detail: intros.detail,
+      }
+    }
+  }
+
   const anythingLoading =
-    steps.some((step) => step.status === 'loading') || peopleStep?.status === 'loading'
+    steps.some((step) => step.status === 'loading') ||
+    peopleStep?.status === 'loading' ||
+    intros?.status === 'loading'
 
   return (
-    <div className="flex flex-col gap-2">
-      <ol aria-live="polite" className="flex flex-wrap items-center gap-x-6 gap-y-2">
+    <div className="flex flex-col gap-2 rounded-xl border border-border bg-card/70 px-4 py-3">
+      <ol aria-live="polite" className="flex items-center gap-x-6 gap-y-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
         {steps.map((step) => (
-          <li key={step.label} className="flex items-center gap-2 text-sm">
+          <li key={step.label} className="flex shrink-0 items-center gap-2 text-sm whitespace-nowrap">
             <StepIcon status={step.status} />
             <span className={cn('text-muted-foreground', step.status === 'done' && 'text-foreground')}>
               {step.label}
@@ -140,7 +157,7 @@ export function ProgressSteps({
           </li>
         ))}
         {peopleStep && (
-          <li className="flex items-center gap-2 text-sm">
+          <li className="flex shrink-0 items-center gap-2 text-sm whitespace-nowrap">
             <StepIcon status={peopleStep.status} />
             <span
               className={cn(
@@ -158,7 +175,54 @@ export function ProgressSteps({
             )}
           </li>
         )}
+        {introsStep && (
+          <li className="flex shrink-0 items-center gap-2 text-sm whitespace-nowrap">
+            <StepIcon status={introsStep.status} />
+            <span
+              className={cn(
+                'text-muted-foreground',
+                introsStep.status === 'done' && 'text-foreground',
+              )}
+            >
+              Warm intros
+            </span>
+            <span className="font-mono text-xs text-muted-foreground">{introsStep.detail}</span>
+            {intros?.status === 'loading' && (
+              <Button variant="ghost" size="sm" className="h-6 px-2 text-xs" onClick={intros.stop}>
+                Stop
+              </Button>
+            )}
+          </li>
+        )}
       </ol>
+      {intros && intros.agents.length > 0 && (
+        <ul
+          aria-label="Cala agents"
+          className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground"
+        >
+          {intros.agents.map((agent) => (
+            <li
+              key={agent.label}
+              className={cn(
+                'items-center gap-1',
+                agent.status === 'done' ? 'hidden sm:flex' : 'flex',
+              )}
+            >
+              {agent.status === 'loading' ? (
+                <Loader2
+                  className="size-3 animate-spin motion-reduce:animate-none"
+                  aria-hidden
+                />
+              ) : agent.status === 'error' ? (
+                <AlertTriangle className="size-3 text-destructive" aria-hidden />
+              ) : (
+                <Check className="size-3 text-brand" aria-hidden />
+              )}
+              {agent.label}
+            </li>
+          ))}
+        </ul>
+      )}
       {anythingLoading && (
         <p className="text-xs text-muted-foreground">
           New Cala queries can take about a minute.

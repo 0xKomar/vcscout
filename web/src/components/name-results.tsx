@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import { Skeleton } from '@/components/ui/skeleton'
 import { DetailPanel } from '@/components/detail-panel'
 import { FundingTimeline } from '@/components/funding-timeline'
-import { QuerySummary } from '@/components/query-summary'
+import { SearchForm } from '@/components/search-form'
 import type { CompanyState } from '@/hooks/use-company'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { plural } from '@/lib/format'
@@ -14,19 +14,17 @@ import type { IdeaQuery, Round, Selection } from '@/lib/types'
 
 interface NameResultsProps {
   state: CompanyState
-  onSubmitName: (name: string) => void
   onSubmitIdea: (query: IdeaQuery) => void
   onRetry: () => void
 }
 
 const EMPTY_GRAPH = { early: [], later: [], edges: [] }
 
-export function NameResults({ state, onSubmitName, onSubmitIdea, onRetry }: NameResultsProps) {
+export function NameResults({ state, onSubmitIdea, onRetry }: NameResultsProps) {
   const isXl = useMediaQuery('(min-width: 1280px)')
   const [selection, setSelection] = useState<Selection | null>(null)
   const [editing, setEditing] = useState(false)
 
-  const name = state.status === 'idle' ? '' : state.name
   const done = state.status === 'done' ? state.data : null
   const rounds = done?.rounds ?? []
 
@@ -44,14 +42,17 @@ export function NameResults({ state, onSubmitName, onSubmitIdea, onRetry }: Name
   return (
     <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6">
       <div className="flex flex-col gap-5">
-        <QuerySummary
-          mode="name"
-          name={name}
-          open={editing}
-          onOpenChange={setEditing}
-          onSubmitIdea={onSubmitIdea}
-          onSubmitName={onSubmitName}
-        />
+        {editing && (
+          <div className="rounded-xl border border-border bg-card p-4">
+            <SearchForm
+              onSubmitIdea={(query) => {
+                setEditing(false)
+                onSubmitIdea(query)
+              }}
+              onCancel={() => setEditing(false)}
+            />
+          </div>
+        )}
 
         {state.status === 'loading' && (
           <div className="flex flex-col gap-4">
@@ -81,12 +82,29 @@ export function NameResults({ state, onSubmitName, onSubmitIdea, onRetry }: Name
         {done && (
           <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_370px]">
             <div className="flex min-w-0 flex-col gap-4">
-              <div>
-                <h1 className="text-xl font-semibold tracking-tight">{done.company}</h1>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {rounds.length} {plural(rounds.length, 'round', 'rounds')} ·{' '}
-                  {done.cached ? 'saved results from November 14, 2026' : 'Cala result'}
-                </p>
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-brand">Explore the landscape</p>
+                  <h1 className="mt-2 font-serif text-3xl tracking-[-0.035em]">{done.company}</h1>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {rounds.length} {plural(rounds.length, 'round', 'rounds')} ·{' '}
+                    {done.cached ? 'saved results from November 14, 2026' : 'Cala result'}
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  className="rounded-full"
+                  onClick={() => {
+                    setEditing(true)
+                    requestAnimationFrame(() => {
+                      const input = document.getElementById('idea-input')
+                      input?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+                      input?.focus({ preventScroll: true })
+                    })
+                  }}
+                >
+                  Find people for your startup
+                </Button>
               </div>
               <p className="rounded-lg border border-border bg-muted/40 px-3 py-2 text-xs leading-relaxed text-muted-foreground">
                 These historical rounds are research leads, not a guarantee of investment or an

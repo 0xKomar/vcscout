@@ -1,5 +1,70 @@
 import { describe, expect, it } from 'vitest'
-import { buildDraft, buildFounderDraft, hostLabel, initials, plural, safeHttpUrl } from './format'
+import {
+  buildDraft,
+  buildForwardableBlurb,
+  buildFounderDraft,
+  buildIntroAskDraft,
+  buildPersonDraft,
+  hostLabel,
+  initials,
+  plural,
+  safeHttpUrl,
+} from './format'
+
+describe('buildForwardableBlurb', () => {
+  it('produces the exact blurb text', () => {
+    expect(
+      buildForwardableBlurb({
+        me: 'Ada Nowak',
+        idea: 'AI for job interviews.',
+        partner: 'Khaled Helioui',
+        fund: 'Plural',
+        reason: 'we both worked at Bigpoint (2014–2016)',
+      }),
+    ).toBe(
+      "Hi Khaled — I'm Ada Nowak, and I'm building: AI for job interviews. I'm reaching out because we both worked at Bigpoint (2014–2016). Would you be open to a short call to see whether this fits Plural's focus?",
+    )
+  })
+
+  it('does not double the period after a reason ending in one', () => {
+    const blurb = buildForwardableBlurb({
+      me: 'Siadhal Magos',
+      idea: 'AI notetaker for hiring interviews',
+      partner: 'Jonathan Heiliger',
+      fund: 'Vertex Ventures US',
+      reason: 'we have both been on the board of Metaview Technologies Inc.',
+    })
+    expect(blurb).toContain('Inc. Would you')
+    expect(blurb).not.toContain('Inc..')
+  })
+})
+
+describe('buildIntroAskDraft', () => {
+  it('produces the exact draft text', () => {
+    expect(
+      buildIntroAskDraft({
+        bridge: 'Henri Moissinac',
+        partner: 'Khaled Helioui',
+        fund: 'Plural',
+        commonFact: 'I saw that we both worked at Uber, and that Plural invested in Dott.',
+        idea: 'AI for job interviews',
+      }),
+    ).toBe(
+      "Hi Henri,\n\nI saw that we both worked at Uber, and that Plural invested in Dott.\n\nI'm building: AI for job interviews\n\nI'm preparing to raise and would love to talk to Khaled Helioui at Plural. Do you know Khaled well enough to introduce us? No worries at all if not.\n\nI've added a short blurb below that you can forward.\n\nBest",
+    )
+  })
+
+  it('uses a placeholder when no bridge is given', () => {
+    expect(
+      buildIntroAskDraft({
+        partner: 'Khaled Helioui',
+        fund: 'Plural',
+        commonFact: 'We have investors in common.',
+        idea: 'AI for job interviews',
+      }).startsWith('Hi [name],'),
+    ).toBe(true)
+  })
+})
 
 describe('buildFounderDraft', () => {
   it('addresses the founder by first name and mentions the idea and their company', () => {
@@ -7,6 +72,20 @@ describe('buildFounderDraft', () => {
     expect(draft.startsWith('Hi Ada,')).toBe(true)
     expect(draft).toContain("I'm building: A CRM for vets")
     expect(draft).toContain('CarMarket')
+  })
+})
+
+describe('drafts for a person without a known role', () => {
+  it('does not invent a company or fund', () => {
+    const ask = buildIntroAskDraft({ partner: 'Anna Nowak', fund: '', commonFact: 'You may know Anna.', idea: 'A product' })
+    const blurb = buildForwardableBlurb({
+      me: 'Alex', idea: 'A product', partner: 'Anna Nowak', fund: '',
+      reason: "I'd love to learn more about your work", kind: 'person',
+    })
+    expect(ask).toContain('talk to Anna Nowak.')
+    expect(ask).not.toContain(' at .')
+    expect(blurb).toContain('short conversation')
+    expect(buildPersonDraft({ personName: 'Anna Nowak', idea: 'A product' })).toContain('Hi Anna,')
   })
 })
 

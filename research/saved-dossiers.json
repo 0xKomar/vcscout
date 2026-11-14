@@ -1,0 +1,983 @@
+{
+ "saved_at": "2026-11-14",
+ "dossiers": [
+  {
+   "name": "Magnus Hambleton",
+   "fund": "byFounders",
+   "facts": [
+    {
+     "kind": "role",
+     "organization": "byFounders",
+     "role": "Partner (promoted from Investor)",
+     "start": "2022",
+     "end": null,
+     "source_url": "https://byfounders.vc/insights/magnus-hambleton-promoted-to-partner-at-byfounders"
+    },
+    {
+     "kind": "role",
+     "organization": "Natural Cycles",
+     "role": "Lead, Data & Product Teams",
+     "start": null,
+     "end": null,
+     "source_url": "https://magnushambleton.com/"
+    },
+    {
+     "kind": "role",
+     "organization": "Boston Consulting Group (BCG)",
+     "role": "Consultant (Australia & Switzerland)",
+     "start": null,
+     "end": null,
+     "source_url": "https://magnushambleton.com/"
+    },
+    {
+     "kind": "board",
+     "organization": "Fluencify",
+     "role": "Styrelseledamot (Board Member)",
+     "start": null,
+     "end": null,
+     "source_url": "https://tech.eu/2026/09/07/fluencify-secures-43m-to-scale-its-creator-campaign-platform"
+    },
+    {
+     "kind": "board",
+     "organization": "QA.tech (Qa Tech Ab)",
+     "role": "Styrelseledamot (Board Member)",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.allabolag.se/5594418948/befattningar"
+    },
+    {
+     "kind": "board",
+     "organization": "Verda (formerly DataCrunch)",
+     "role": "Board Member / Advisor",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.crunchbase.com/organization/datacrunch-io/profiles_and_contacts"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Hummingbird Ventures",
+     "role": "Series A",
+     "start": "2025-07-17",
+     "end": null,
+     "source_url": "https://tech.eu/2025/07/17/lovable-annointed-europes-latest-unicorn-following-200m-funding-round",
+     "company": "Lovable"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Accel",
+     "role": "Series A",
+     "start": "2025-07-17",
+     "end": null,
+     "source_url": "https://tech.eu/2025/07/17/lovable-annointed-europes-latest-unicorn-following-200m-funding-round",
+     "company": "Lovable"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Creandum",
+     "role": "Series A",
+     "start": "2025-07-17",
+     "end": null,
+     "source_url": "https://tech.eu/2025/07/17/lovable-annointed-europes-latest-unicorn-following-200m-funding-round",
+     "company": "Lovable"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "J12 Ventures",
+     "role": "Seed",
+     "start": "2024-10-21",
+     "end": null,
+     "source_url": "https://tech.eu/2024/10/21/datacrunch-advances-affordable-ai-infrastructure-with-13m-seed-funding",
+     "company": "DataCrunch"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "ACE Ventures",
+     "role": "Series A",
+     "start": "2026-08-25",
+     "end": null,
+     "source_url": "https://www.menlotimes.com/post/adaptyv-bio-raises-40m-series-a-to-build-the-automated-lab-for-agentic-biology",
+     "company": "Adaptyv Bio"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Bain Capital Crypto",
+     "role": "Seed",
+     "start": "2026-03-02",
+     "end": null,
+     "source_url": "https://www.arctictoday.com/%F0%9F%87%AB%F0%9F%87%AE-tangled-announcing-our-e38m-seed-round",
+     "company": "Tangled"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Planet A Ventures",
+     "role": "Seed",
+     "start": "2025-02-25",
+     "end": null,
+     "source_url": "https://www.impactloop.com/artikel/new-era-for-milan-biotech-hero-arsenale-bioyards-after-scoring-eur9m-in-funding",
+     "company": "Arsenale Bioyards"
+    }
+   ]
+  },
+  {
+   "name": "Ricardo Sequerra Amram",
+   "fund": "Point Nine",
+   "facts": [
+    {
+     "kind": "role",
+     "organization": "Point Nine Management GmbH",
+     "role": "Partner",
+     "start": "2019-07",
+     "end": null,
+     "source_url": "https://uk.marketscreener.com/insider/RICARDO-SEQUERRA-AMRAM-A25VGS"
+    },
+    {
+     "kind": "role",
+     "organization": "Cherry Ventures Management GmbH",
+     "role": "Principal",
+     "start": "2017",
+     "end": "2019",
+     "source_url": "https://uk.marketscreener.com/insider/RICARDO-SEQUERRA-AMRAM-A25VGS"
+    },
+    {
+     "kind": "role",
+     "organization": "Faber Ventures (Faber Capital SCR S.A.)",
+     "role": "Investment and Growth Lead",
+     "start": "2015",
+     "end": "2016",
+     "source_url": "https://uk.marketscreener.com/insider/RICARDO-SEQUERRA-AMRAM-A25VGS"
+    },
+    {
+     "kind": "role",
+     "organization": "Seedrs",
+     "role": "Business Development / Startup Community",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.crunchbase.com/person/ricardo-sequerra"
+    },
+    {
+     "kind": "role",
+     "organization": "Seedcamp",
+     "role": "Fellow / Intern",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.crunchbase.com/person/ricardo-sequerra"
+    },
+    {
+     "kind": "education",
+     "organization": "Universidade Católica Portuguesa",
+     "role": "Undergraduate degree",
+     "start": null,
+     "end": "2011",
+     "source_url": "https://uk.marketscreener.com/insider/RICARDO-SEQUERRA-AMRAM-A25VGS"
+    },
+    {
+     "kind": "education",
+     "organization": "ESADE Business School",
+     "role": "Graduate degree",
+     "start": null,
+     "end": "2012",
+     "source_url": "https://uk.marketscreener.com/insider/RICARDO-SEQUERRA-AMRAM-A25VGS"
+    },
+    {
+     "kind": "board",
+     "organization": "Attio",
+     "role": "Director",
+     "start": "2021-09-03",
+     "end": null,
+     "source_url": "https://find-and-update.company-information.service.gov.uk/company/10719702/officers"
+    },
+    {
+     "kind": "board",
+     "organization": "Omnea",
+     "role": "Director",
+     "start": "2022-06-13",
+     "end": null,
+     "source_url": "https://find-and-update.company-information.service.gov.uk/company/13869078/officers"
+    },
+    {
+     "kind": "board",
+     "organization": "Pento",
+     "role": "Board Member",
+     "start": "2019-09-01",
+     "end": null,
+     "source_url": "https://www.crunchbase.com/person/ricardo-sequerra"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Balderton Capital",
+     "role": "Seed",
+     "start": "2021-11-01",
+     "end": null,
+     "source_url": "https://businesscloud.co.uk/news/transformational-crm-firm-attio-raises-5-8m-seed",
+     "company": "Attio",
+     "person": "Daniel Waterhouse"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Redpoint Ventures",
+     "role": "Series A",
+     "start": "2023-03-02",
+     "end": null,
+     "source_url": "https://siliconcanals.com/crm-software-provider-attio-secures-e29-7m",
+     "company": "Attio",
+     "person": "Alex Bard"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "First Round Capital",
+     "role": "Seed",
+     "start": "2024-10-14",
+     "end": null,
+     "source_url": "https://www.seedtable.com/startups/omnea",
+     "company": "Omnea"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Accel",
+     "role": "Series A",
+     "start": "2024-10-14",
+     "end": null,
+     "source_url": "https://www.startupmag.co.uk/funding/omnea-raised-20000000",
+     "company": "Omnea"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Credo Ventures",
+     "role": "Pre-seed",
+     "start": "2026-09-23",
+     "end": null,
+     "source_url": "https://www.thesaasnews.com/news/f13-raises-5m-pre-seed",
+     "company": "F13"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "XAnge",
+     "role": "Series A",
+     "start": "2026-10-06",
+     "end": null,
+     "source_url": "https://tech.eu/2026/10/06/autonomous-b2b-trade-gets-a-boost-as-procuros-raises-eur20m",
+     "company": "Procuros"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Creandum",
+     "role": "Series A",
+     "start": "2026-10-06",
+     "end": null,
+     "source_url": "https://www.thesaasnews.com/news/procuros-raises-20m-series-a",
+     "company": "Procuros"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Tiny Supercomputer Investment Company (Tiny VC)",
+     "role": "Seed",
+     "start": "2025-05-20",
+     "end": null,
+     "source_url": "https://www.crunchbase.com/funding_round/sensmore-series-unknown--2f29b5cf",
+     "company": "sensmore",
+     "person": "Philipp Moehring"
+    }
+   ]
+  },
+  {
+   "name": "Khaled Helioui",
+   "fund": "Plural",
+   "facts": [
+    {
+     "kind": "role",
+     "organization": "Plural",
+     "role": "Co-Founder & Partner",
+     "start": "2021",
+     "end": null,
+     "source_url": "https://pitchbook.com/profiles/investor/120416-23"
+    },
+    {
+     "kind": "role",
+     "organization": "Bigpoint",
+     "role": "CEO (Managing Director)",
+     "start": "2013-03",
+     "end": "2017-03",
+     "source_url": "https://www.pocketgamer.biz/bigpoint-ceo-khaled-helioui-steps-down"
+    },
+    {
+     "kind": "role",
+     "organization": "Bigpoint",
+     "role": "Chief Games Officer",
+     "start": "2012-07",
+     "end": "2013-03",
+     "source_url": "https://mcvuk.com/development-news/bigpoint-appoints-games-chief-as-new-ceo"
+    },
+    {
+     "kind": "role",
+     "organization": "TA Associates",
+     "role": "Private Equity Professional (prior to Bigpoint)",
+     "start": null,
+     "end": "2012",
+     "source_url": "https://techcrunch.com/2013/03/07/bigpoint-ceo"
+    },
+    {
+     "kind": "education",
+     "organization": "Aalborg University",
+     "role": "Certificate, International Management",
+     "start": null,
+     "end": null,
+     "source_url": "https://signal.nfx.com/investors/khaled-helioui"
+    },
+    {
+     "kind": "board",
+     "organization": "Isometric",
+     "role": "Board Observer and Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://pitchbook.com/profiles/investor/120416-23"
+    },
+    {
+     "kind": "board",
+     "organization": "Dott",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://pitchbook.com/profiles/investor/120416-23"
+    },
+    {
+     "kind": "board",
+     "organization": "Augur",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://pitchbook.com/profiles/investor/120416-23"
+    },
+    {
+     "kind": "board",
+     "organization": "Mos",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://pitchbook.com/profiles/investor/120416-23"
+    },
+    {
+     "kind": "angel",
+     "organization": "Freeda Media",
+     "role": "Series A",
+     "start": "2018-05-02",
+     "end": null,
+     "source_url": "https://tech.eu/2018/05/03/freeda-raises-funding"
+    },
+    {
+     "kind": "angel",
+     "organization": "nextProtein",
+     "role": "Seed",
+     "start": "2016-12",
+     "end": null,
+     "source_url": "https://globalaginvesting.com/nextprotein-secures-e1-3m-insect-based-protein"
+    },
+    {
+     "kind": "angel",
+     "organization": "Numerade",
+     "role": "Series A",
+     "start": "2021-07-19",
+     "end": null,
+     "source_url": "https://tracxn.com/d/people/khaled-helioui/__83d1pZpRw7hnDM5b7rd5vyBbEosiWn3-SevhIrIuDAw"
+    },
+    {
+     "kind": "angel",
+     "organization": "Mos",
+     "role": "Series B",
+     "start": "2022-02-03",
+     "end": null,
+     "source_url": "https://tracxn.com/d/people/khaled-helioui/__83d1pZpRw7hnDM5b7rd5vyBbEosiWn3-SevhIrIuDAw"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "General Catalyst",
+     "role": "Series D",
+     "start": "2025-06-17",
+     "end": null,
+     "source_url": "https://estvca.ee/news/plural-participates-in-helsing-s-eur600m-series-d-funding-round",
+     "company": "Helsing"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Accel",
+     "role": "Series D",
+     "start": "2025-06-17",
+     "end": null,
+     "source_url": "https://estvca.ee/news/plural-participates-in-helsing-s-eur600m-series-d-funding-round",
+     "company": "Helsing"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Lightspeed Venture Partners",
+     "role": "Series D",
+     "start": "2025-06-17",
+     "end": null,
+     "source_url": "https://estvca.ee/news/plural-participates-in-helsing-s-eur600m-series-d-funding-round",
+     "company": "Helsing"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Lowercarbon Capital",
+     "role": "Seed",
+     "start": "2023-07-18",
+     "end": null,
+     "source_url": "https://www.startupmag.co.uk/funding/isometric-raised-25000000",
+     "company": "Isometric",
+     "person": "Ryan Orbuch"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "AVP",
+     "role": "Series A",
+     "start": "2026-06-22",
+     "end": null,
+     "source_url": "https://www.thesaasnews.com/news/isometric-secures-40-million-in-series-a",
+     "company": "Isometric"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Iconical",
+     "role": "Series C",
+     "start": "2024-02-06",
+     "end": null,
+     "source_url": "https://www.starship.xyz/press/robot-delivery-leader-starship-technologies-raises-90-million-led-by-plural-and-iconical",
+     "company": "Starship Technologies"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Hummingbird Ventures",
+     "role": "Series A",
+     "start": "2026-02-11",
+     "end": null,
+     "source_url": "https://nordic9.com/news/olix-computing-raises-220-million-series-a-led-by-hummingbird-ventures-joined-by-plural-vertex-ventures-us-localglobe-and-entrepreneurs-first",
+     "company": "Olix"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "First Kind",
+     "role": "Seed",
+     "start": "2026-03-09",
+     "end": null,
+     "source_url": "https://nordic9.com/news/augur-raised-15-million-in-a-seed-round-led-by-plural-joined-by-first-kind-snr-flix-and-tiny-vc",
+     "company": "Augur"
+    }
+   ]
+  },
+  {
+   "name": "Pierre-Dimitri Gore-Coty",
+   "fund": "Plural",
+   "facts": [
+    {
+     "kind": "role",
+     "organization": "Plural",
+     "role": "General Partner / Partner",
+     "start": "2025",
+     "end": null,
+     "source_url": "https://in.marketscreener.com/insider/PIERRE-DIMITRI-GORE-COTY-A1LOND"
+    },
+    {
+     "kind": "role",
+     "organization": "Uber Technologies, Inc.",
+     "role": "Senior Vice President, Delivery (Uber Eats)",
+     "start": "2020",
+     "end": "2025",
+     "source_url": "https://www.weforum.org/people/pierre-dimitri-gore-coty"
+    },
+    {
+     "kind": "role",
+     "organization": "Uber Technologies, Inc.",
+     "role": "General Manager, France (first international city launch)",
+     "start": "2012-09",
+     "end": null,
+     "source_url": "https://www.eecpoland.eu/2016/en/speakers/pierre-dimitri-gore-coty,5899.html"
+    },
+    {
+     "kind": "role",
+     "organization": "Benros Capital Partners LLP",
+     "role": "Portfolio Manager",
+     "start": "2011",
+     "end": "2012",
+     "source_url": "https://in.marketscreener.com/insider/PIERRE-DIMITRI-GORE-COTY-A1LOND"
+    },
+    {
+     "kind": "role",
+     "organization": "Goldman Sachs",
+     "role": "Proprietary Trading Desk",
+     "start": null,
+     "end": "2010",
+     "source_url": "https://www.eecpoland.eu/2016/en/speakers/pierre-dimitri-gore-coty,5899.html"
+    },
+    {
+     "kind": "education",
+     "organization": "École Centrale (Paris)",
+     "role": "",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.eecpoland.eu/2016/en/speakers/pierre-dimitri-gore-coty,5899.html"
+    },
+    {
+     "kind": "education",
+     "organization": "Columbia University in the City of New York",
+     "role": "Master of Science, Financial Engineering",
+     "start": null,
+     "end": "2008",
+     "source_url": "https://signal.nfx.com/investors/pierre-dimitri-gore-coty"
+    },
+    {
+     "kind": "board",
+     "organization": "Metaview Technologies Inc.",
+     "role": "Director",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1894764/000189476425000002/xslFormDX01/primary_doc.xml"
+    },
+    {
+     "kind": "angel",
+     "organization": "Helsing",
+     "role": "",
+     "start": null,
+     "end": null,
+     "source_url": "https://vcwire.tech/2025/10/08/pierre-dimitri-gore-coty-joins-plural-as-partner"
+    },
+    {
+     "kind": "angel",
+     "organization": "Metaview",
+     "role": "",
+     "start": null,
+     "end": null,
+     "source_url": "https://vcwire.tech/2025/10/08/pierre-dimitri-gore-coty-joins-plural-as-partner"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Lakestar",
+     "role": "Series A",
+     "start": "2026-03-01",
+     "end": null,
+     "source_url": "https://estvca.ee/news/plural-leads-validio-s-usd30m-series-a-funding-round",
+     "company": "Validio"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "J12 Ventures",
+     "role": "Series A",
+     "start": "2026-03-01",
+     "end": null,
+     "source_url": "https://nordic9.com/news/validio-raised-a-30-million-series-a-led-by-plural-joined-by-lakestar-j12-ventures-and-angel-investors-in-sweden",
+     "company": "Validio"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "GV (Google Ventures)",
+     "role": "Series B",
+     "start": "2025-06-25",
+     "end": null,
+     "source_url": "https://www.unleash.ai/hr-technology/google-ventures-leads-35-million-series-b-funding-in-metaview",
+     "company": "Metaview",
+     "person": "Vidu Shanmugarajah"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Seedcamp",
+     "role": "Series B",
+     "start": "2025-06-25",
+     "end": null,
+     "source_url": "https://www.thesaasnews.com/news/metaview-raises-30-1-million-in-series-b",
+     "company": "Metaview"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Vertex Ventures",
+     "role": "Series B",
+     "start": "2025-06-25",
+     "end": null,
+     "source_url": "https://www.thesaasnews.com/news/metaview-raises-30-1-million-in-series-b",
+     "company": "Metaview"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "General Catalyst",
+     "role": "Series D",
+     "start": "2025-06-17",
+     "end": null,
+     "source_url": "https://estvca.ee/news/plural-participates-in-helsing-s-eur600m-series-d-funding-round",
+     "company": "Helsing"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Accel",
+     "role": "Series D",
+     "start": "2025-06-17",
+     "end": null,
+     "source_url": "https://estvca.ee/news/plural-participates-in-helsing-s-eur600m-series-d-funding-round",
+     "company": "Helsing"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Lightspeed Venture Partners",
+     "role": "Series D",
+     "start": "2025-06-17",
+     "end": null,
+     "source_url": "https://estvca.ee/news/plural-participates-in-helsing-s-eur600m-series-d-funding-round",
+     "company": "Helsing"
+    }
+   ]
+  },
+  {
+   "name": "Jonathan Heiliger",
+   "fund": "Vertex Ventures US",
+   "facts": [
+    {
+     "kind": "role",
+     "organization": "Vertex Ventures US",
+     "role": "Founder & General Partner",
+     "start": "2015",
+     "end": null,
+     "source_url": "https://signal.nfx.com/investors/jonathan-heiliger"
+    },
+    {
+     "kind": "role",
+     "organization": "North Bridge Venture Partners",
+     "role": "General Partner",
+     "start": "2012-04",
+     "end": "2014-11",
+     "source_url": "https://www.exploratorium.edu/about/board-of-trustees/jonathan-heileger"
+    },
+    {
+     "kind": "role",
+     "organization": "Facebook",
+     "role": "VP, Infrastructure & Technical Operations",
+     "start": "2007",
+     "end": "2011",
+     "source_url": "https://www.venturebanc.com/palo-alto/angels/jonathan-heiliger"
+    },
+    {
+     "kind": "role",
+     "organization": "Loudcloud (Opsware)",
+     "role": "Chief Operating Officer",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.exploratorium.edu/about/board-of-trustees/jonathan-heileger"
+    },
+    {
+     "kind": "role",
+     "organization": "Frontier GlobalCenter",
+     "role": "Co-Founder & CTO",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.datacouncil.ai/speakers/jonathan-heiliger"
+    },
+    {
+     "kind": "board",
+     "organization": "DuPont Fabros Technology (DFT)",
+     "role": "Director",
+     "start": "2011-11-09",
+     "end": null,
+     "source_url": "https://www.datacenterknowledge.com/business/jonathan-heiliger-joins-board-at-dupont-fabros"
+    },
+    {
+     "kind": "board",
+     "organization": "Jive Software",
+     "role": "Director",
+     "start": "2011-03-30",
+     "end": null,
+     "source_url": "https://www.forbes.com/sites/tomiogeron/2011/03/30/jive-preps-for-ipo-facebook-google-mcafee-execs-on-board"
+    },
+    {
+     "kind": "board",
+     "organization": "Webmonsters",
+     "role": "Chairman",
+     "start": null,
+     "end": null,
+     "source_url": "https://informaconnect.com/superventure/speakers/jonathan-heiliger"
+    },
+    {
+     "kind": "board",
+     "organization": "PerimeterX",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.cbinsights.com/company/perimeterx/people"
+    },
+    {
+     "kind": "board",
+     "organization": "LaunchDarkly",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://pitchbook.com/profiles/investor/106649-83"
+    },
+    {
+     "kind": "board",
+     "organization": "CloseFactor",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://theorg.com/org/closefactor/org-chart/jonathan-heiliger"
+    },
+    {
+     "kind": "board",
+     "organization": "Metaview",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://signal.nfx.com/investors/jonathan-heiliger"
+    },
+    {
+     "kind": "angel",
+     "organization": "Hoodline",
+     "role": "Seed Round",
+     "start": "2015-11-17",
+     "end": null,
+     "source_url": "https://pitchbook.com/profiles/investor/106649-83"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Nexus Venture Partners",
+     "role": "Series A",
+     "start": "2020-02-26",
+     "end": null,
+     "source_url": "https://www.techcircle.in/2020/02/27/vertex-ventures-us-leads-9-9-mn-series-a-round-in-tech-startup-hasura",
+     "company": "Hasura"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Nexus Venture Partners",
+     "role": "Series B",
+     "start": "2020-09-09",
+     "end": null,
+     "source_url": "https://www.techcircle.in/2020/09/09/lightspeed-leads-25-mn-funding-round-in-data-access-solutions-startup-hasura",
+     "company": "Hasura"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Nexus Venture Partners",
+     "role": "Series C",
+     "start": "2022-01-14",
+     "end": null,
+     "source_url": "https://tracxn.com/d/companies/hasura/__SMK3S7BMgtsGtSv97RLd1UJUbyheNG10g9USc7rNJ4A/funding-and-investors",
+     "company": "Hasura"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Andreessen Horowitz (a16z)",
+     "role": "Series C",
+     "start": "2020-12-18",
+     "end": null,
+     "source_url": "https://en.ain.ua/2020/12/21/vgs-raises-60m-series-c",
+     "company": "Very Good Security (VGS)"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Goldman Sachs Growth",
+     "role": "Series C",
+     "start": "2020-12-18",
+     "end": null,
+     "source_url": "https://salestechstar.com/price-optimization-revenue-management/very-good-security-raises-60-million-series-c-led-by-vertex-ventures",
+     "company": "Very Good Security (VGS)"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Redpoint Ventures",
+     "role": "Series B",
+     "start": "2017-12-04",
+     "end": null,
+     "source_url": "https://globalventuring.com/blog/2020/01/20/launchdarkly-arcs-to-54m-round",
+     "company": "LaunchDarkly"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Bessemer Venture Partners",
+     "role": "Series C",
+     "start": "2019-03-13",
+     "end": null,
+     "source_url": "https://globalventuring.com/corporate/launchdarkly-gets-200m-boost-at-3bn-valuation",
+     "company": "LaunchDarkly",
+     "person": "Ethan Kurzweil"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Threshold Ventures",
+     "role": "Series A",
+     "start": "2022-03-01",
+     "end": null,
+     "source_url": "https://betakit.com/opslevel-raises-15-million-series-a-funding-for-developer-portal",
+     "company": "OpsLevel"
+    }
+   ]
+  },
+  {
+   "name": "Yasmin Razavi",
+   "fund": "Spark Capital",
+   "facts": [
+    {
+     "kind": "role",
+     "organization": "Spark Capital",
+     "role": "General Partner (Growth)",
+     "start": "2017",
+     "end": null,
+     "source_url": "https://techcrunch.com/author/yasmin-razavi"
+    },
+    {
+     "kind": "role",
+     "organization": "Snap Inc.",
+     "role": "Product Manager",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.finnotes.org/people/yasmin-razavi"
+    },
+    {
+     "kind": "role",
+     "organization": "Index Ventures",
+     "role": "Investor",
+     "start": null,
+     "end": null,
+     "source_url": "https://www.forbes.com/profile/yasmin-razavi"
+    },
+    {
+     "kind": "role",
+     "organization": "McKinsey & Company",
+     "role": "Consultant",
+     "start": null,
+     "end": null,
+     "source_url": "https://techcrunch.com/author/yasmin-razavi"
+    },
+    {
+     "kind": "education",
+     "organization": "University of Toronto",
+     "role": "Bachelor of Applied Science and Engineering",
+     "start": null,
+     "end": null,
+     "source_url": "https://techcrunch.com/author/yasmin-razavi"
+    },
+    {
+     "kind": "education",
+     "organization": "Harvard Business School",
+     "role": "Master of Business Administration (MBA)",
+     "start": null,
+     "end": null,
+     "source_url": "https://techcrunch.com/author/yasmin-razavi"
+    },
+    {
+     "kind": "board",
+     "organization": "Anthropic",
+     "role": "Director/Board Member",
+     "start": "2023-01-03",
+     "end": null,
+     "source_url": "https://sa.marketscreener.com/insider/YASMIN-RAZAVI-A28WVK"
+    },
+    {
+     "kind": "board",
+     "organization": "Deel",
+     "role": "Director/Board Member",
+     "start": "2020-09-09",
+     "end": null,
+     "source_url": "https://tracxn.com/d/people/yasmin-razavi/__0y1Vg4me8zdNKI_F_35i8ehpOxlr8SFvmQR5NRTYgLI"
+    },
+    {
+     "kind": "board",
+     "organization": "MatX",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://signal.nfx.com/investors/yasmin-razavi"
+    },
+    {
+     "kind": "board",
+     "organization": "Capitolis",
+     "role": "Director/Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://sa.marketscreener.com/insider/YASMIN-RAZAVI-A28WVK"
+    },
+    {
+     "kind": "board",
+     "organization": "Ada Support",
+     "role": "Director/Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://sa.marketscreener.com/insider/YASMIN-RAZAVI-A28WVK"
+    },
+    {
+     "kind": "board",
+     "organization": "Pika",
+     "role": "Board Member",
+     "start": null,
+     "end": null,
+     "source_url": "https://signal.nfx.com/investors/yasmin-razavi"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Google (Alphabet)",
+     "role": "Series C",
+     "start": "2023-05-23",
+     "end": null,
+     "source_url": "https://www.forbes.com/sites/qai/2023/05/24/openai-competitor-anthropic-secures-450m-in-latest-funding-round-with-google-as-backer",
+     "company": "Anthropic"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Salesforce Ventures",
+     "role": "Series C",
+     "start": "2023-05-23",
+     "end": null,
+     "source_url": "https://www.coincarp.com/fundraising/anthropic-series-c",
+     "company": "Anthropic"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Sequoia Capital",
+     "role": "Series A",
+     "start": "2026-04-30",
+     "end": null,
+     "source_url": "https://pulse2.com/standard-intelligence-raises-75-million-from-sequoia-and-spark-capital-to-scale-agi-research",
+     "company": "Standard Intelligence",
+     "person": "Sonya Huang"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Sequoia Capital",
+     "role": "Series C",
+     "start": "2025-10-21",
+     "end": null,
+     "source_url": "https://www.bloomberg.com/news/articles/2025-10-21/spark-khosla-sequoia-back-startup-bringing-ai-to-tax-collection",
+     "company": "Anrok"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Index Ventures",
+     "role": "Series C",
+     "start": "2025-10-21",
+     "end": null,
+     "source_url": "https://www.thesaasnews.com/news/anrok-raises-55-million-series-c",
+     "company": "Anrok"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Khosla Ventures",
+     "role": "Series C",
+     "start": "2025-10-21",
+     "end": null,
+     "source_url": "https://www.bloomberg.com/news/articles/2025-10-21/spark-khosla-sequoia-back-startup-bringing-ai-to-tax-collection",
+     "company": "Anrok"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Lightspeed Venture Partners",
+     "role": "Series B",
+     "start": "2024-06-05",
+     "end": null,
+     "source_url": "https://www.bloomberg.com/news/articles/2024-06-05/spark-capital-jared-leto-back-ai-video-startup-pika",
+     "company": "Pika"
+    },
+    {
+     "kind": "coinvestor",
+     "organization": "Jane Street",
+     "role": "Series B",
+     "start": "2026-02-24",
+     "end": null,
+     "source_url": "https://techcrunch.com/2026/02/24/nvidia-challenger-ai-chip-startup-matx-raised-500m",
+     "company": "MatX"
+    }
+   ]
+  }
+ ]
+}

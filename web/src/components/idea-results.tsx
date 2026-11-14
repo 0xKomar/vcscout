@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { AlertTriangle, FileSearch, Loader2 } from 'lucide-react'
+import { AlertTriangle, Compass, FileSearch, Link2, Loader2, UserRound, UserRoundPlus } from 'lucide-react'
+import { useReducedMotion } from 'motion/react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
@@ -9,19 +10,33 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { DetailPanel } from '@/components/detail-panel'
 import { ExplorerGraphView, type GraphExplore } from '@/components/explorer-graph'
 import { GraphDetailPanel } from '@/components/graph-detail-panel'
+import { IntroEmptyState } from '@/components/intro-empty-state'
+import { NetworkDetail } from '@/components/network-detail'
+import { NetworkGraphView } from '@/components/network-graph-view'
 import { InvestorMap } from '@/components/investor-map'
+import { MeProfileForm } from '@/components/me-profile-form'
+import { ManualPersonForm } from '@/components/manual-person-form'
 import { ProgressSteps } from '@/components/progress-steps'
 import { QuerySummary } from '@/components/query-summary'
+import { ResultsTutorial } from '@/components/results-tutorial'
 import { RiskList } from '@/components/risk-list'
 import { SimilarCompanies } from '@/components/similar-companies'
+import { WarmestIntros } from '@/components/warmest-intros'
 import type { DiscoveryState } from '@/hooks/use-discovery'
 import { useExploredStartups } from '@/hooks/use-explored-startups'
 import { useFounders } from '@/hooks/use-founders'
 import { useFundPortfolios } from '@/hooks/use-fund-portfolios'
+import { useMe } from '@/hooks/use-me'
+import { useNetwork } from '@/hooks/use-network'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { usePeoplePrefetch } from '@/hooks/use-people-prefetch'
 import { personKey, usePersonInvestments } from '@/hooks/use-person-investments'
 import { useResolvedPartners } from '@/hooks/use-partners'
+import { introKey } from '@/lib/intro'
+import { linkedinProfileKey } from '@/lib/linkedin-csv'
+import { bestPathIds, manualLinkedinNodeId, mapSeed, personIdentity, type NetNode } from '@/lib/network'
+import { TUTORIAL_STEPS } from '@/lib/tutorial'
+import { cn } from '@/lib/utils'
 import {
   defaultEvidenceCompany,
   extendGraph,
@@ -30,6 +45,7 @@ import {
   peoplePairs,
   preparePaths,
   roundLevel,
+  sameFund,
   stageLevel,
   type PortfolioPath,
 } from '@/lib/paths'
@@ -39,6 +55,8 @@ import type {
   CompanyRounds,
   FundStage,
   IdeaQuery,
+  ManualPerson,
+  MeProfile,
   Partner,
   Round,
   Selection,
@@ -47,23 +65,38 @@ import type {
 interface IdeaResultsProps {
   state: DiscoveryState
   onSubmitIdea: (query: IdeaQuery) => void
-  onSubmitName: (name: string) => void
   retrySimilar: () => void
   retryCompany: (company: string) => void
 }
 
 type TabValue = 'map' | 'companies' | 'risks'
 
+type MapView = 'graph' | 'paths' | 'intros'
+
+const EMPTY_PROFILE: MeProfile = {
+  name: '',
+  linkedin_url: '',
+  employers: [],
+  schools: [],
+  contacts: [],
+  facts: [],
+  hidden: [],
+}
+
 export function IdeaResults({
   state,
   onSubmitIdea,
-  onSubmitName,
   retrySimilar,
   retryCompany,
 }: IdeaResultsProps) {
   const isXl = useMediaQuery('(min-width: 1280px)')
+  const isLg = useMediaQuery('(min-width: 1024px)')
+  const reduceMotion = useReducedMotion()
   const [tab, setTab] = useState<TabValue>('map')
-  const [view, setView] = useState<'graph' | 'paths'>('graph')
+  const [view, setView] = useState<MapView>('intros')
+  const [tutorialOpen, setTutorialOpen] = useState(true)
+  const [tutorialStep, setTutorialStep] = useState(0)
+  const [tutorialInteracted, setTutorialInteracted] = useState(false)
   const [selection, setSelection] = useState<Selection | null>(null)
   const [graphSelection, setGraphSelection] = useState<string | null>(null)
   const [graphPerson, setGraphPerson] = useState<{
@@ -80,6 +113,16 @@ export function IdeaResults({
   const [editing, setEditing] = useState(false)
   const [showPortfolios, setShowPortfolios] = useState(true)
   const [sheetOpen, setSheetOpen] = useState(false)
+  const [meFormOpen, setMeFormOpen] = useState(false)
+  const [manualForm, setManualForm] = useState<'new' | string | null>(null)
+  const [manualSelectionKey, setManualSelectionKey] = useState<string | null>(null)
+  const [introSelection, setIntroSelection] = useState<string | null>(null)
+  const [introTarget, setIntroTarget] = useState<{
+    name: string
+    org: string
+    id?: string
+  } | null>(null)
+  const [introMode, setIntroMode] = useState<'list' | 'graph'>('list')
 
   const exclude =
     state.similar.status === 'done' ? state.similar.matches.map((match) => match.company) : []
@@ -145,6 +188,62 @@ export function IdeaResults({
     prefetchPairs,
     companies.length > 0 && completed === companies.length,
   )
+
+  const fullGraph = useMemo(() => extendGraph(graph, portfolioInputs), [graph, portfolioInputs])
+  const scopedPartners = useMemo(() => {
+    const funds = [...fullGraph.early, ...fullGraph.later]
+    return resolvedPartners.filter((entry) =>
+      funds.some((node) => sameFund(node.name, entry.fund)),
+    )
+  }, [resolvedPartners, fullGraph])
+  const meStore = useMe()
+  const networkSeed = useMemo(
+    () =>
+      mapSeed({
+        matches: similarMatches,
+        companies: companies
+          .filter((entry) => entry.status === 'done' && entry.data)
+          .map((entry) => entry.data as CompanyRounds),
+        founders: founders.list,
+        partners: scopedPartners,
+      }),
+    [similarMatches, companies, founders.list, scopedPartners],
+  )
+  const intros = useNetwork(networkSeed, scopedPartners, introTarget)
+
+  const introProfile = intros.me.profile
+  const introTotal = intros.ranked.length
+  const manualPeople = introProfile?.manual_people ?? []
+  const hasManualPeople = intros.network.nodes.some((node) => node.manual)
+  const pathIds = useMemo(() => {
+    const picked = introTarget?.id
+      ? intros.ranked.filter((entry) => entry.node.id === introTarget.id)
+      : []
+    const ids = bestPathIds(picked.length ? picked : introTarget || hasManualPeople ? [] : intros.ranked)
+    if (introTarget?.id) ids.nodes.add(introTarget.id)
+    const manualIds = new Set(intros.network.nodes.filter((node) => node.manual).map((node) => node.id))
+    for (const id of manualIds) ids.nodes.add(id)
+    for (const edge of intros.network.edges) {
+      if ((manualIds.has(edge.source) || manualIds.has(edge.target)) &&
+        ids.nodes.has(edge.source) && ids.nodes.has(edge.target)) ids.edges.add(edge.id)
+    }
+    return ids
+  }, [intros.ranked, intros.network, introTarget, hasManualPeople])
+  const inFlight = Object.values(intros.expandStates).filter(
+    (state) => state.status === 'loading',
+  ).length
+  const selectedNode = manualSelectionKey
+    ? intros.network.nodes.find((node) =>
+        node.manual && linkedinProfileKey(node.profileUrl) === manualSelectionKey) ?? null
+    : intros.network.nodes.find((node) => node.id === introSelection) ?? null
+  const selectedId = selectedNode?.id ?? null
+  const selectedPath = (selectedId && intros.paths.get(selectedId)) || null
+  const selectedIsContact =
+    !!selectedNode &&
+    selectedNode.known === 'contact'
+  const editingManual = manualForm && manualForm !== 'new'
+    ? manualPeople.find((person) => linkedinProfileKey(person.profile_url) === manualForm)
+    : undefined
 
   const matchesByCompany = useMemo(
     () =>
@@ -269,6 +368,60 @@ export function IdeaResults({
     if (id && !isXl) setSheetOpen(true)
   }
 
+  const onIntroSelect = (id: string | null) => {
+    setManualSelectionKey(null)
+    if (id === null) {
+      setIntroSelection(null)
+      return
+    }
+    if (id === 'me') {
+      setMeFormOpen(true)
+      return
+    }
+    const picked = intros.network.nodes.find((node) => node.id === id)
+    if (picked?.target) {
+      if (!tutorialInteracted) setTutorialOpen(false)
+      setIntroTarget({
+        name: picked.label,
+        org: picked.fund ?? picked.company ?? '',
+        id: picked.id,
+      })
+    }
+    setIntroSelection(id)
+    if (!isXl) setSheetOpen(true)
+  }
+
+  const applyTutorialStep = (nextIndex: number, scroll = true) => {
+    const step = TUTORIAL_STEPS[nextIndex]
+    if (!step) return
+    setTutorialInteracted(true)
+    setTutorialStep(nextIndex)
+    setTab(step.tab)
+    setView(step.view)
+    setSelection(null)
+    setGraphSelection(null)
+    setGraphPerson(null)
+    setIntroSelection(null)
+    setManualSelectionKey(null)
+    if (step.view !== 'intros') setIntroTarget(null)
+    setSheetOpen(false)
+    if (scroll) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const isSingleColumn = window.innerWidth < 1280
+          const tutorialEl = isSingleColumn && nextIndex > 0
+            ? document.querySelector<HTMLElement>('[data-testid="results-tutorial"]')
+            : null
+          const selector = step.targets.map((key) => `[data-tutorial="${key}"]`).join(', ')
+          const targetEl = tutorialEl ?? document.querySelector<HTMLElement>(selector)
+          if (!targetEl) return
+          const top = targetEl.getBoundingClientRect().top + window.scrollY - 88
+          window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'instant' : 'smooth' })
+        })
+      })
+    }
+  }
+
   const onGraphPersonClick = (person: Partner, fund: string, company: string) => {
     const id = `p:${person.name.toLowerCase()}`
     if (graphModel.nodes.some((node) => node.id === id)) {
@@ -358,6 +511,126 @@ export function IdeaResults({
     setSheetOpen(true)
   }
 
+  const saveManualPerson = (person: ManualPerson): string | null => {
+    const key = linkedinProfileKey(person.profile_url)
+    if (key === linkedinProfileKey(introProfile?.linkedin_url))
+      return 'That is your own LinkedIn profile. Add a different person.'
+    const alreadyAdded = manualPeople.some((entry) => linkedinProfileKey(entry.profile_url) === key)
+    if (alreadyAdded && manualForm !== key) return 'This profile is already added to your map.'
+    if (!alreadyAdded && manualPeople.length >= 40) return 'You can add up to 40 people to this profile.'
+    const oldNode = intros.network.nodes.find((node) =>
+      node.manual && linkedinProfileKey(node.profileUrl) === key)
+    if (editingManual && oldNode &&
+      (editingManual.name !== person.name || !!editingManual.target !== !!person.target)) {
+      intros.invalidateExpansion(oldNode.id)
+      if (introTarget?.id === oldNode.id) setIntroTarget(null)
+    }
+    meStore.setManualPeople([
+      ...manualPeople.filter((entry) => linkedinProfileKey(entry.profile_url) !== key),
+      person,
+    ])
+    setIntroSelection(null)
+    setManualSelectionKey(key)
+    setIntroMode('graph')
+    return null
+  }
+
+  const removeManualPerson = (person: ManualPerson) => {
+    const key = linkedinProfileKey(person.profile_url)
+    const node = intros.network.nodes.find((entry) =>
+      entry.manual && linkedinProfileKey(entry.profileUrl) === key)
+    if (node) {
+      intros.invalidateExpansion(node.id)
+      if (introTarget?.id === node.id) setIntroTarget(null)
+      if (node.id === manualLinkedinNodeId(person.profile_url) && node.known === 'contact')
+        meStore.removeContact(node.label, node.contactRefId ?? node.id)
+    }
+    meStore.setManualPeople(manualPeople.filter((entry) => linkedinProfileKey(entry.profile_url) !== key))
+    setIntroSelection(null)
+    setManualSelectionKey(null)
+  }
+
+  const editManualPerson = (node: NetNode) => {
+    const key = linkedinProfileKey(node.profileUrl)
+    if (!key) return
+    setSheetOpen(false)
+    setManualForm(key)
+  }
+
+  const researchNode = (id: string) => {
+    const node = intros.network.nodes.find((entry) => entry.id === id)
+    if (node?.manual) intros.deepExpand(id)
+    else intros.expand(id)
+  }
+
+  const introList = (
+    <div className="flex flex-col gap-2">
+      <WarmestIntros
+        ranked={intros.ranked}
+        network={intros.network}
+        selected={selectedId}
+        linkedinReview={intros.linkedinReview}
+        onReviewMore={intros.reviewMoreLinkedin}
+        onReviewContact={intros.reviewLinkedin}
+        onSelect={(id) => {
+          setManualSelectionKey(null)
+          const picked = id ? intros.network.nodes.find((node) => node.id === id) : null
+          if (picked?.target) {
+            if (!tutorialInteracted) setTutorialOpen(false)
+            setIntroTarget({
+              name: picked.label,
+              org: picked.fund ?? picked.company ?? '',
+              id: picked.id,
+            })
+          }
+          setIntroSelection(id)
+          if (!isXl) setSheetOpen(true)
+        }}
+      />
+    </div>
+  )
+
+  const introGraphView = !introTarget && !hasManualPeople ? (
+    <div className="flex min-h-56 flex-col items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/50 p-8 text-center">
+      <div className="flex items-center" aria-hidden>
+        <span className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground"><UserRound className="size-4" /></span>
+        <span className="w-10 border-t border-dashed border-brand/40" />
+        <span className="grid size-9 place-items-center rounded-full border border-brand/20 bg-card text-brand"><Link2 className="size-4" /></span>
+        <span className="w-10 border-t border-dashed border-brand/40" />
+        <span className="grid size-10 place-items-center rounded-full border border-connection/25 bg-connection-soft font-serif text-lg text-connection">?</span>
+      </div>
+      <p className="mt-4 font-serif text-lg">Your path starts with a person.</p>
+      <p className="mt-1 max-w-sm text-xs leading-relaxed text-muted-foreground">
+        Choose someone above and we&apos;ll search for shared ground. Warm-intro research starts after you select a target.
+      </p>
+    </div>
+  ) : (
+    <div>
+      {!introTarget && (
+        <p className="mb-2 text-xs leading-5 text-muted-foreground">
+          Your added people are shown below. Choose a target to begin researching connections.
+        </p>
+      )}
+      <NetworkGraphView
+        network={intros.network}
+        paths={intros.paths}
+        pathIds={pathIds}
+        selection={selectedId}
+        focusKey={introTarget?.id ?? 'manual-people'}
+        onSelect={onIntroSelect}
+        expandStates={intros.expandStates}
+        onExpand={researchNode}
+        running={intros.running}
+        inFlight={inFlight}
+        canSearchDeeper={intros.canSearchDeeper}
+        maxDepth={intros.maxDepth}
+        onSearchDeeper={intros.searchDeeper}
+        onStop={intros.stop}
+        researchEnabled={!!introTarget}
+      />
+    </div>
+  )
+
   const detail =
     view === 'graph' ? (
       <GraphDetailPanel
@@ -381,6 +654,41 @@ export function IdeaResults({
         onPersonBack={() => setGraphPerson(null)}
         onLoadPortfolios={portfolios.load}
       />
+    ) : view === 'intros' ? (
+      <NetworkDetail
+        node={selectedNode}
+        network={intros.network}
+        path={selectedPath}
+        me={introProfile ?? EMPTY_PROFILE}
+        idea={state.query.idea}
+        expandState={selectedNode ? intros.expandStates[selectedNode.id] : undefined}
+        onExpand={researchNode}
+        onSelectNode={onIntroSelect}
+        isContact={selectedIsContact}
+        onToggleContact={(node, organization) => {
+          if (selectedIsContact) meStore.removeContact(node.label, node.contactRefId ?? node.id)
+          else {
+            const profileKey = linkedinProfileKey(node.profileUrl)
+            meStore.addContact(node.label, organization, {
+              id: node.id,
+              identity: personIdentity(node),
+              profile_key: profileKey || undefined,
+            })
+            if (!node.manualNeedsName) intros.deepExpand(node.id)
+          }
+        }}
+        dossier={
+          selectedNode?.target === 'partner' && selectedNode.fund
+            ? intros.dossiers[introKey(selectedNode.label, selectedNode.fund)]
+            : undefined
+        }
+        onLoadDossier={() => {
+          if (selectedNode?.fund)
+            intros.loadDossier(introKey(selectedNode.label, selectedNode.fund))
+        }}
+        researchEnabled={!!introTarget}
+        onEditManual={editManualPerson}
+      />
     ) : (
       <DetailPanel
         selection={selection}
@@ -397,18 +705,72 @@ export function IdeaResults({
       />
     )
 
+  const sheetVisible =
+    sheetOpen &&
+    (view === 'graph'
+      ? !!(graphSelection || graphPerson)
+      : view === 'intros'
+        ? !!selectedId
+        : !!selection)
+
   return (
-    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6">
+    <main
+      className={cn(
+        'mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6',
+        tutorialOpen && 'xl:pb-72',
+      )}
+    >
       <div className="flex flex-col gap-5">
-        <QuerySummary
-          mode="idea"
-          idea={state.query}
-          open={editing}
-          onOpenChange={setEditing}
-          onSubmitIdea={onSubmitIdea}
-          onSubmitName={onSubmitName}
+        <div className="flex flex-col gap-3 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-brand">Your connection atlas</p>
+            <h1 className="mt-2 font-serif text-3xl tracking-[-0.035em] sm:text-4xl">Find your way to the right people.</h1>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="max-w-[290px] text-xs leading-5 text-muted-foreground">
+              Choose connected funding paths over dead ends, then trace the shared ground between you.
+            </p>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="shrink-0 rounded-full"
+              onClick={() => {
+                if (tutorialOpen) setTutorialOpen(false)
+                else {
+                  setTutorialOpen(true)
+                  applyTutorialStep(0, true)
+                }
+              }}
+            >
+              <Compass className="size-3.5 text-brand" aria-hidden />
+              {tutorialOpen ? 'Hide walkthrough' : 'Walkthrough'}
+            </Button>
+          </div>
+        </div>
+        <div data-tutorial="query-and-progress" className="flex flex-col gap-5">
+          <QuerySummary
+            idea={state.query}
+            open={editing}
+            onOpenChange={setEditing}
+            onSubmitIdea={onSubmitIdea}
+            meName={introProfile?.name}
+            onAddYourself={() => setMeFormOpen(true)}
+          />
+          <ProgressSteps
+            state={state}
+            people={peoplePrefetch}
+            founders={founders}
+            intros={intros.progress}
+          />
+        </div>
+        <ResultsTutorial
+          open={tutorialOpen}
+          paused={meFormOpen || !!manualForm || sheetVisible}
+          stepIndex={tutorialStep}
+          onStepChange={(index) => applyTutorialStep(index, true)}
+          onClose={() => setTutorialOpen(false)}
         />
-        <ProgressSteps state={state} people={peoplePrefetch} founders={founders} />
 
         {state.similar.status === 'error' && (
           <Alert variant="destructive">
@@ -435,9 +797,9 @@ export function IdeaResults({
           </div>
         )}
 
-        {(searching || matchCount > 0) && (
+        {(searching || matchCount > 0 || !!introProfile) && (
           <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_370px]">
-            <div className="min-w-0">
+            <div className="min-w-0" data-tutorial="workspace-tabs">
               <Tabs
                 value={tab}
                 onValueChange={(value) => {
@@ -445,17 +807,15 @@ export function IdeaResults({
                   setSelection(null)
                   setGraphSelection(null)
                   setGraphPerson(null)
+                  setIntroSelection(null)
+                  setManualSelectionKey(null)
+                  setIntroTarget(null)
                   setSheetOpen(false)
                 }}
               >
                 <TabsList className="max-w-full justify-start overflow-x-auto">
                   <TabsTrigger value="map">
-                    <span className="sm:hidden">
-                      Map ({displayGraph.early.length + displayGraph.later.length})
-                    </span>
-                    <span className="hidden sm:inline">
-                      Investor map ({displayGraph.early.length + displayGraph.later.length})
-                    </span>
+                    People &amp; paths ({introTotal})
                   </TabsTrigger>
                   <TabsTrigger value="companies">
                     <span className="sm:hidden">Similar ({similarLabel})</span>
@@ -467,24 +827,34 @@ export function IdeaResults({
                   </TabsTrigger>
                 </TabsList>
                 <TabsContent value="map" className="mt-5">
-                  <div className="mb-3 flex items-center gap-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <ToggleGroup
                       type="single"
                       value={view}
                       onValueChange={(value) => {
                         if (!value) return
-                        setView(value as 'graph' | 'paths')
+                        setView(value as MapView)
                         setSelection(null)
                         setGraphSelection(null)
                         setGraphPerson(null)
+                        setIntroSelection(null)
+                        setManualSelectionKey(null)
+                        if (value !== 'intros') setIntroTarget(null)
                         setSheetOpen(false)
                       }}
                       variant="outline"
                       size="sm"
                     >
+                      <ToggleGroupItem value="intros">Warm intros</ToggleGroupItem>
                       <ToggleGroupItem value="graph">Relationship graph</ToggleGroupItem>
                       <ToggleGroupItem value="paths">Paths</ToggleGroupItem>
                     </ToggleGroup>
+                    {view === 'intros' && introProfile && (
+                      <Button variant="outline" size="sm" onClick={() => setManualForm('new')}>
+                        <UserRoundPlus className="size-3.5" aria-hidden />
+                        Add person
+                      </Button>
+                    )}
                   </div>
                   {view === 'graph' ? (
                     <ExplorerGraphView
@@ -507,6 +877,69 @@ export function IdeaResults({
                       exploreFor={exploreFor}
                       status={graphStatus}
                     />
+                  ) : view === 'intros' ? (
+                    !introProfile ? (
+                      <IntroEmptyState onAddYourself={() => setMeFormOpen(true)} />
+                    ) : introTotal === 0 ? (
+                      <div className="flex flex-col gap-4">
+                        <p className="text-sm text-muted-foreground">
+                          {peoplePrefetch.status === 'pending' ||
+                          peoplePrefetch.status === 'loading' ||
+                          searching
+                            ? 'Finding people at the funds on your map… the network appears as they are found.'
+                            : 'No founders or partners were found on this map yet.'}
+                        </p>
+                        {isLg ? (
+                          <>
+                            {introList}
+                            {introGraphView}
+                          </>
+                        ) : (
+                          <>
+                            <ToggleGroup
+                              type="single"
+                              value={introMode}
+                              onValueChange={(value) =>
+                                value && setIntroMode(value as 'list' | 'graph')
+                              }
+                              variant="outline"
+                              size="sm"
+                              className="self-start"
+                            >
+                              <ToggleGroupItem value="list">List</ToggleGroupItem>
+                              <ToggleGroupItem value="graph">Graph</ToggleGroupItem>
+                            </ToggleGroup>
+                            {introMode === 'list' ? introList : introGraphView}
+                          </>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-4">
+                        {isLg ? (
+                          <>
+                            {introList}
+                            {introGraphView}
+                          </>
+                        ) : (
+                          <>
+                            <ToggleGroup
+                              type="single"
+                              value={introMode}
+                              onValueChange={(value) =>
+                                value && setIntroMode(value as 'list' | 'graph')
+                              }
+                              variant="outline"
+                              size="sm"
+                              className="self-start"
+                            >
+                              <ToggleGroupItem value="list">List</ToggleGroupItem>
+                              <ToggleGroupItem value="graph">Graph</ToggleGroupItem>
+                            </ToggleGroup>
+                            {introMode === 'list' ? introList : introGraphView}
+                          </>
+                        )}
+                      </div>
+                    )
                   ) : searching ? (
                     searchingNotice
                   ) : (
@@ -528,6 +961,8 @@ export function IdeaResults({
                     onLoadPortfolios={portfolios.load}
                     onTogglePortfolios={setShowPortfolios}
                     peopleCounts={peoplePrefetch.byKey}
+                    meName={introProfile?.name}
+                    onAddYourself={() => setMeFormOpen(true)}
                   />
                   )}
                 </TabsContent>
@@ -551,7 +986,10 @@ export function IdeaResults({
               </Tabs>
             </div>
             {isXl && (
-              <aside className="sticky top-20 rounded-xl border border-border bg-card p-4">
+              <aside
+                data-tutorial="detail-aside"
+                className="sticky top-20 rounded-xl border border-border bg-card p-4"
+              >
                 {detail}
               </aside>
             )}
@@ -561,10 +999,7 @@ export function IdeaResults({
 
       {!isXl && (
         <Sheet
-          open={
-            sheetOpen &&
-            (view === 'graph' ? !!(graphSelection || graphPerson) : !!selection)
-          }
+          open={sheetVisible}
           onOpenChange={(open) => {
             if (!open) {
               setSheetOpen(false)
@@ -584,6 +1019,16 @@ export function IdeaResults({
             <div className="px-4 pb-6">{detail}</div>
           </SheetContent>
         </Sheet>
+      )}
+      <MeProfileForm open={meFormOpen} onOpenChange={setMeFormOpen} />
+      {manualForm && (
+        <ManualPersonForm
+          key={manualForm}
+          initial={editingManual}
+          onClose={() => setManualForm(null)}
+          onSave={saveManualPerson}
+          onRemove={editingManual ? () => removeManualPerson(editingManual) : undefined}
+        />
       )}
     </main>
   )

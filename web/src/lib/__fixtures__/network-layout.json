@@ -1,0 +1,1572 @@
+{
+ "nodes": [
+  {
+   "id": "me",
+   "kind": "me",
+   "label": "Me"
+  },
+  {
+   "id": "o:org 1",
+   "kind": "org",
+   "label": "Org 1",
+   "orgType": "company"
+  },
+  {
+   "id": "o:org 2",
+   "kind": "org",
+   "label": "Org 2",
+   "orgType": "school"
+  },
+  {
+   "id": "o:org 3",
+   "kind": "org",
+   "label": "Org 3",
+   "orgType": "event"
+  },
+  {
+   "id": "p:person 1",
+   "kind": "person",
+   "label": "Person 1",
+   "known": "contact"
+  },
+  {
+   "id": "o:org 4",
+   "kind": "org",
+   "label": "Org 4",
+   "orgType": "company"
+  },
+  {
+   "id": "o:org 5",
+   "kind": "org",
+   "label": "Org 5",
+   "orgType": "company"
+  },
+  {
+   "id": "o:org 6",
+   "kind": "org",
+   "label": "Org 6",
+   "orgType": "company"
+  },
+  {
+   "id": "o:org 7",
+   "kind": "org",
+   "label": "Org 7",
+   "orgType": "company"
+  },
+  {
+   "id": "p:person 2",
+   "kind": "person",
+   "label": "Person 2",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 3",
+   "kind": "person",
+   "label": "Person 3",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 4",
+   "kind": "person",
+   "label": "Person 4",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 5",
+   "kind": "person",
+   "label": "Person 5",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 6",
+   "kind": "person",
+   "label": "Person 6",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 7",
+   "kind": "person",
+   "label": "Person 7",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 8",
+   "kind": "person",
+   "label": "Person 8",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 9",
+   "kind": "person",
+   "label": "Person 9",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 10",
+   "kind": "person",
+   "label": "Person 10",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 11",
+   "kind": "person",
+   "label": "Person 11",
+   "target": "founder"
+  },
+  {
+   "id": "p:person 12",
+   "kind": "person",
+   "label": "Person 12",
+   "target": "founder"
+  },
+  {
+   "id": "o:org 8",
+   "kind": "org",
+   "label": "Org 8",
+   "orgType": "fund"
+  },
+  {
+   "id": "o:org 9",
+   "kind": "org",
+   "label": "Org 9",
+   "orgType": "fund"
+  },
+  {
+   "id": "o:org 10",
+   "kind": "org",
+   "label": "Org 10",
+   "orgType": "fund"
+  },
+  {
+   "id": "o:org 11",
+   "kind": "org",
+   "label": "Org 11",
+   "orgType": "fund"
+  },
+  {
+   "id": "o:org 12",
+   "kind": "org",
+   "label": "Org 12",
+   "orgType": "fund"
+  },
+  {
+   "id": "o:org 13",
+   "kind": "org",
+   "label": "Org 13",
+   "orgType": "fund"
+  },
+  {
+   "id": "o:org 14",
+   "kind": "org",
+   "label": "Org 14",
+   "orgType": "fund"
+  },
+  {
+   "id": "p:person 13",
+   "kind": "person",
+   "label": "Person 13",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 14",
+   "kind": "person",
+   "label": "Person 14",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 15",
+   "kind": "person",
+   "label": "Person 15",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 16",
+   "kind": "person",
+   "label": "Person 16",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 17",
+   "kind": "person",
+   "label": "Person 17",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 18",
+   "kind": "person",
+   "label": "Person 18",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 19",
+   "kind": "person",
+   "label": "Person 19",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 20",
+   "kind": "person",
+   "label": "Person 20",
+   "target": "partner"
+  },
+  {
+   "id": "p:person 21",
+   "kind": "person",
+   "label": "Person 21"
+  },
+  {
+   "id": "p:person 22",
+   "kind": "person",
+   "label": "Person 22"
+  },
+  {
+   "id": "p:person 23",
+   "kind": "person",
+   "label": "Person 23"
+  },
+  {
+   "id": "p:person 24",
+   "kind": "person",
+   "label": "Person 24"
+  },
+  {
+   "id": "p:person 25",
+   "kind": "person",
+   "label": "Person 25"
+  },
+  {
+   "id": "o:org 15",
+   "kind": "org",
+   "label": "Org 15"
+  },
+  {
+   "id": "p:person 26",
+   "kind": "person",
+   "label": "Person 26"
+  },
+  {
+   "id": "p:person 27",
+   "kind": "person",
+   "label": "Person 27"
+  },
+  {
+   "id": "p:person 28",
+   "kind": "person",
+   "label": "Person 28"
+  },
+  {
+   "id": "p:person 29",
+   "kind": "person",
+   "label": "Person 29"
+  },
+  {
+   "id": "p:person 30",
+   "kind": "person",
+   "label": "Person 30"
+  },
+  {
+   "id": "o:org 16",
+   "kind": "org",
+   "label": "Org 16",
+   "orgType": "school"
+  },
+  {
+   "id": "o:org 17",
+   "kind": "org",
+   "label": "Org 17",
+   "orgType": "company"
+  },
+  {
+   "id": "o:org 18",
+   "kind": "org",
+   "label": "Org 18",
+   "orgType": "event"
+  },
+  {
+   "id": "o:org 19",
+   "kind": "org",
+   "label": "Org 19",
+   "orgType": "company"
+  },
+  {
+   "id": "o:org 20",
+   "kind": "org",
+   "label": "Org 20",
+   "orgType": "company"
+  },
+  {
+   "id": "o:org 21",
+   "kind": "org",
+   "label": "Org 21",
+   "orgType": "school"
+  },
+  {
+   "id": "o:org 22",
+   "kind": "org",
+   "label": "Org 22",
+   "orgType": "event"
+  },
+  {
+   "id": "p:person 31",
+   "kind": "person",
+   "label": "Person 31"
+  },
+  {
+   "id": "p:person 32",
+   "kind": "person",
+   "label": "Person 32"
+  },
+  {
+   "id": "p:person 33",
+   "kind": "person",
+   "label": "Person 33"
+  },
+  {
+   "id": "p:person 34",
+   "kind": "person",
+   "label": "Person 34"
+  },
+  {
+   "id": "o:org 23",
+   "kind": "org",
+   "label": "Org 23"
+  },
+  {
+   "id": "p:person 35",
+   "kind": "person",
+   "label": "Person 35"
+  },
+  {
+   "id": "o:org 24",
+   "kind": "org",
+   "label": "Org 24"
+  },
+  {
+   "id": "p:person 36",
+   "kind": "person",
+   "label": "Person 36"
+  },
+  {
+   "id": "p:person 37",
+   "kind": "person",
+   "label": "Person 37"
+  },
+  {
+   "id": "p:person 38",
+   "kind": "person",
+   "label": "Person 38"
+  },
+  {
+   "id": "p:person 39",
+   "kind": "person",
+   "label": "Person 39"
+  },
+  {
+   "id": "p:person 40",
+   "kind": "person",
+   "label": "Person 40"
+  },
+  {
+   "id": "p:person 41",
+   "kind": "person",
+   "label": "Person 41"
+  },
+  {
+   "id": "p:person 42",
+   "kind": "person",
+   "label": "Person 42"
+  },
+  {
+   "id": "o:org 25",
+   "kind": "org",
+   "label": "Org 25"
+  },
+  {
+   "id": "p:person 43",
+   "kind": "person",
+   "label": "Person 43"
+  },
+  {
+   "id": "p:person 44",
+   "kind": "person",
+   "label": "Person 44"
+  },
+  {
+   "id": "o:org 26",
+   "kind": "org",
+   "label": "Org 26"
+  }
+ ],
+ "edges": [
+  {
+   "id": "e0",
+   "source": "me",
+   "target": "o:org 1",
+   "relation": "works",
+   "label": "works",
+   "cost": 1.25,
+   "certainty": "fact",
+   "source_url": "self-reported"
+  },
+  {
+   "id": "e1",
+   "source": "me",
+   "target": "o:org 2",
+   "relation": "studied",
+   "label": "studied",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "self-reported"
+  },
+  {
+   "id": "e2",
+   "source": "me",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "inferred",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e3",
+   "source": "me",
+   "target": "p:person 1",
+   "relation": "knows",
+   "label": "knows",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "self-reported"
+  },
+  {
+   "id": "e4",
+   "source": "p:person 1",
+   "target": "o:org 4",
+   "relation": "works",
+   "label": "works",
+   "cost": 1.25,
+   "certainty": "fact",
+   "source_url": "self-reported"
+  },
+  {
+   "id": "e5",
+   "source": "p:person 2",
+   "target": "o:org 4",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e6",
+   "source": "p:person 3",
+   "target": "o:org 4",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e7",
+   "source": "p:person 4",
+   "target": "o:org 4",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e8",
+   "source": "p:person 5",
+   "target": "o:org 5",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e9",
+   "source": "p:person 6",
+   "target": "o:org 5",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e10",
+   "source": "p:person 7",
+   "target": "o:org 6",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e11",
+   "source": "p:person 8",
+   "target": "o:org 6",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e12",
+   "source": "p:person 9",
+   "target": "o:org 6",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e13",
+   "source": "p:person 10",
+   "target": "o:org 7",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e14",
+   "source": "p:person 11",
+   "target": "o:org 7",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e15",
+   "source": "p:person 12",
+   "target": "o:org 7",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e16",
+   "source": "o:org 8",
+   "target": "o:org 4",
+   "relation": "backed",
+   "label": "backed",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e17",
+   "source": "o:org 9",
+   "target": "o:org 5",
+   "relation": "backed",
+   "label": "backed",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e18",
+   "source": "o:org 10",
+   "target": "o:org 5",
+   "relation": "backed",
+   "label": "backed",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e19",
+   "source": "o:org 11",
+   "target": "o:org 6",
+   "relation": "backed",
+   "label": "backed",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e20",
+   "source": "o:org 12",
+   "target": "o:org 6",
+   "relation": "backed",
+   "label": "backed",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e21",
+   "source": "o:org 13",
+   "target": "o:org 7",
+   "relation": "backed",
+   "label": "backed",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e22",
+   "source": "o:org 14",
+   "target": "o:org 7",
+   "relation": "backed",
+   "label": "backed",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e23",
+   "source": "p:person 13",
+   "target": "o:org 8",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e24",
+   "source": "p:person 13",
+   "target": "o:org 4",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e25",
+   "source": "p:person 14",
+   "target": "o:org 9",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e26",
+   "source": "p:person 14",
+   "target": "o:org 5",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e27",
+   "source": "p:person 15",
+   "target": "o:org 10",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e28",
+   "source": "p:person 15",
+   "target": "o:org 5",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e29",
+   "source": "p:person 16",
+   "target": "o:org 10",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e30",
+   "source": "p:person 16",
+   "target": "o:org 5",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e31",
+   "source": "p:person 17",
+   "target": "o:org 11",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e32",
+   "source": "p:person 17",
+   "target": "o:org 6",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e33",
+   "source": "p:person 18",
+   "target": "o:org 12",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e34",
+   "source": "p:person 18",
+   "target": "o:org 6",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e35",
+   "source": "p:person 19",
+   "target": "o:org 13",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e36",
+   "source": "p:person 19",
+   "target": "o:org 7",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e37",
+   "source": "p:person 20",
+   "target": "o:org 14",
+   "relation": "member",
+   "label": "member",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e38",
+   "source": "p:person 20",
+   "target": "o:org 7",
+   "relation": "deal",
+   "label": "deal",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e39",
+   "source": "p:person 13",
+   "target": "o:org 8",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e40",
+   "source": "p:person 21",
+   "target": "o:org 8",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e41",
+   "source": "p:person 22",
+   "target": "o:org 8",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e42",
+   "source": "p:person 23",
+   "target": "o:org 8",
+   "relation": "works",
+   "label": "works",
+   "cost": 1.25,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e43",
+   "source": "p:person 24",
+   "target": "o:org 8",
+   "relation": "works",
+   "label": "works",
+   "cost": 1.25,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e44",
+   "source": "p:person 25",
+   "target": "o:org 8",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e45",
+   "source": "p:person 25",
+   "target": "o:org 15",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e46",
+   "source": "p:person 4",
+   "target": "p:person 2",
+   "relation": "co-founder",
+   "label": "co-founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e47",
+   "source": "p:person 4",
+   "target": "p:person 3",
+   "relation": "co-founder",
+   "label": "co-founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e48",
+   "source": "p:person 4",
+   "target": "p:person 26",
+   "relation": "other",
+   "label": "other",
+   "cost": 3.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e49",
+   "source": "p:person 4",
+   "target": "p:person 27",
+   "relation": "colleague",
+   "label": "colleague",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e50",
+   "source": "p:person 4",
+   "target": "p:person 28",
+   "relation": "colleague",
+   "label": "colleague",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e51",
+   "source": "p:person 4",
+   "target": "p:person 29",
+   "relation": "colleague",
+   "label": "colleague",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e52",
+   "source": "p:person 4",
+   "target": "p:person 30",
+   "relation": "co-appearance",
+   "label": "co-appearance",
+   "cost": 3,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e53",
+   "source": "p:person 3",
+   "target": "o:org 16",
+   "relation": "studied",
+   "label": "studied",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e54",
+   "source": "p:person 3",
+   "target": "o:org 4",
+   "relation": "works",
+   "label": "works",
+   "cost": 1.25,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e55",
+   "source": "p:person 3",
+   "target": "o:org 17",
+   "relation": "works",
+   "label": "works",
+   "cost": 1.25,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e56",
+   "source": "p:person 3",
+   "target": "o:org 18",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e57",
+   "source": "p:person 3",
+   "target": "p:person 2",
+   "relation": "co-founder",
+   "label": "co-founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e58",
+   "source": "p:person 2",
+   "target": "o:org 4",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e59",
+   "source": "p:person 3",
+   "target": "o:org 4",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e60",
+   "source": "p:person 3",
+   "target": "p:person 4",
+   "relation": "co-founder",
+   "label": "co-founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e61",
+   "source": "p:person 4",
+   "target": "o:org 4",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e62",
+   "source": "p:person 3",
+   "target": "p:person 2",
+   "relation": "classmate",
+   "label": "classmate",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e63",
+   "source": "p:person 2",
+   "target": "o:org 16",
+   "relation": "studied",
+   "label": "studied",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e64",
+   "source": "p:person 3",
+   "target": "p:person 2",
+   "relation": "co-appearance",
+   "label": "co-appearance",
+   "cost": 3,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e65",
+   "source": "p:person 3",
+   "target": "p:person 4",
+   "relation": "co-appearance",
+   "label": "co-appearance",
+   "cost": 3,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e66",
+   "source": "p:person 2",
+   "target": "o:org 19",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e67",
+   "source": "p:person 2",
+   "target": "o:org 19",
+   "relation": "works",
+   "label": "works",
+   "cost": 1.25,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e68",
+   "source": "p:person 2",
+   "target": "o:org 20",
+   "relation": "founder",
+   "label": "founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e69",
+   "source": "p:person 2",
+   "target": "o:org 21",
+   "relation": "studied",
+   "label": "studied",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e70",
+   "source": "p:person 2",
+   "target": "o:org 22",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e71",
+   "source": "p:person 2",
+   "target": "p:person 4",
+   "relation": "co-founder",
+   "label": "co-founder",
+   "cost": 1,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e72",
+   "source": "p:person 2",
+   "target": "p:person 13",
+   "relation": "investor",
+   "label": "investor",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e73",
+   "source": "p:person 13",
+   "target": "o:org 4",
+   "relation": "invested",
+   "label": "invested",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e74",
+   "source": "p:person 2",
+   "target": "p:person 23",
+   "relation": "investor",
+   "label": "investor",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e75",
+   "source": "p:person 23",
+   "target": "o:org 4",
+   "relation": "invested",
+   "label": "invested",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e76",
+   "source": "p:person 2",
+   "target": "p:person 24",
+   "relation": "investor",
+   "label": "investor",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e77",
+   "source": "p:person 24",
+   "target": "o:org 4",
+   "relation": "invested",
+   "label": "invested",
+   "cost": 1.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e78",
+   "source": "p:person 2",
+   "target": "p:person 31",
+   "relation": "co-appearance",
+   "label": "co-appearance",
+   "cost": 3,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e79",
+   "source": "p:person 31",
+   "target": "o:org 22",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e80",
+   "source": "p:person 2",
+   "target": "o:org 22",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e81",
+   "source": "p:person 2",
+   "target": "p:person 32",
+   "relation": "co-appearance",
+   "label": "co-appearance",
+   "cost": 3,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e82",
+   "source": "p:person 32",
+   "target": "o:org 22",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e83",
+   "source": "p:person 2",
+   "target": "p:person 33",
+   "relation": "co-appearance",
+   "label": "co-appearance",
+   "cost": 3,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e84",
+   "source": "p:person 33",
+   "target": "o:org 22",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e85",
+   "source": "p:person 2",
+   "target": "p:person 34",
+   "relation": "co-appearance",
+   "label": "co-appearance",
+   "cost": 3,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e86",
+   "source": "p:person 34",
+   "target": "o:org 22",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e87",
+   "source": "me",
+   "target": "o:org 23",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "inferred",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e88",
+   "source": "p:person 35",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e89",
+   "source": "p:person 35",
+   "target": "o:org 24",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e90",
+   "source": "p:person 36",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e91",
+   "source": "p:person 36",
+   "target": "o:org 24",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e92",
+   "source": "p:person 37",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e93",
+   "source": "p:person 37",
+   "target": "o:org 24",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e94",
+   "source": "p:person 38",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e95",
+   "source": "p:person 38",
+   "target": "o:org 24",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e96",
+   "source": "p:person 39",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e97",
+   "source": "p:person 39",
+   "target": "o:org 24",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e98",
+   "source": "p:person 40",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e99",
+   "source": "p:person 40",
+   "target": "o:org 24",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e100",
+   "source": "p:person 41",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e101",
+   "source": "p:person 41",
+   "target": "o:org 24",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e102",
+   "source": "p:person 42",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e103",
+   "source": "p:person 42",
+   "target": "o:org 25",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e104",
+   "source": "p:person 43",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e105",
+   "source": "p:person 43",
+   "target": "o:org 25",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e106",
+   "source": "p:person 44",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e107",
+   "source": "p:person 44",
+   "target": "o:org 26",
+   "relation": "affiliated",
+   "label": "affiliated",
+   "cost": 2.5,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e108",
+   "source": "me",
+   "target": "p:person 35",
+   "relation": "teammate",
+   "label": "teammate",
+   "cost": 2,
+   "certainty": "inferred",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e109",
+   "source": "p:person 35",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e110",
+   "source": "me",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "inferred",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e111",
+   "source": "me",
+   "target": "p:person 36",
+   "relation": "teammate",
+   "label": "teammate",
+   "cost": 2,
+   "certainty": "inferred",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e112",
+   "source": "p:person 36",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e113",
+   "source": "me",
+   "target": "p:person 37",
+   "relation": "teammate",
+   "label": "teammate",
+   "cost": 2,
+   "certainty": "inferred",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e114",
+   "source": "p:person 37",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e115",
+   "source": "me",
+   "target": "p:person 42",
+   "relation": "teammate",
+   "label": "teammate",
+   "cost": 2,
+   "certainty": "inferred",
+   "source_url": "https://example.com/source"
+  },
+  {
+   "id": "e116",
+   "source": "p:person 42",
+   "target": "o:org 3",
+   "relation": "took-part",
+   "label": "took-part",
+   "cost": 2,
+   "certainty": "fact",
+   "source_url": "https://example.com/source"
+  }
+ ]
+}

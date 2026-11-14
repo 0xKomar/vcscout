@@ -62,6 +62,70 @@ Would you be open to a short conversation?
 Best`
 }
 
+export function buildIntroAskDraft({
+  bridge,
+  partner,
+  fund,
+  commonFact,
+  idea,
+}: {
+  bridge?: string
+  partner: string
+  fund: string
+  commonFact: string
+  idea: string
+}): string {
+  const firstName = bridge ? bridge.split(' ')[0] : '[name]'
+  return `Hi ${firstName},
+
+${commonFact}
+
+I'm building: ${idea}
+
+I'm preparing to raise and would love to talk to ${partner}${fund ? ` at ${fund}` : ''}. Do you know ${partner.split(' ')[0]} well enough to introduce us? No worries at all if not.
+
+I've added a short blurb below that you can forward.
+
+Best`
+}
+
+export function buildForwardableBlurb({
+  me,
+  idea,
+  partner,
+  fund,
+  reason,
+  kind = 'partner',
+}: {
+  me: string
+  idea: string
+  partner: string
+  fund: string
+  reason: string
+  kind?: 'partner' | 'founder' | 'person'
+}): string {
+  const pitch = idea.trim().replace(/[.!?]+$/, '')
+  const ask =
+    kind === 'person'
+      ? 'Would you be open to a short conversation?'
+      : kind === 'founder'
+      ? 'Would you be open to a short call about how you approached your early rounds?'
+      : `Would you be open to a short call to see whether this fits ${fund}'s focus?`
+  return `Hi ${partner.split(' ')[0]} — I'm ${me}, and I'm building: ${pitch}. I'm reaching out because ${reason.replace(/\.+$/, '')}. ${ask}`
+}
+
+export function buildPersonDraft({ personName, idea }: { personName: string; idea: string }): string {
+  return `Hi ${personName.split(' ')[0]},
+
+I'm building: ${idea}
+
+I'd love to learn more about your work and share what I'm building.
+
+Would you be open to a short conversation?
+
+Best`
+}
+
 export function buildFounderDraft({
   personName,
   idea,

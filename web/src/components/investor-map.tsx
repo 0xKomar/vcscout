@@ -15,7 +15,7 @@ import type { PortfolioRequestItem, PortfolioState } from '@/hooks/use-fund-port
 import { useMediaQuery } from '@/hooks/use-media-query'
 
 const MAP_NOTICE =
-  'Suggestions are based on historical investments in similar companies. A link does not guarantee investment or an introduction; your round target is not compared with fund investment sizes. A fund can be a historical match and still require a conflict check. Check the sources.'
+  'Use this map to compare connected multi-stage trajectories against isolated funds whose startups show no documented follow-on leads. Suggestions are based on historical investments in similar companies — a link does not guarantee investment or an introduction, and your round target is not compared with fund check sizes. A fund can be a historical match and still require a conflict check. Check the sources.'
 
 interface MapLine {
   id: string
@@ -43,6 +43,8 @@ interface InvestorMapProps {
   onLoadPortfolios: (items: PortfolioRequestItem[]) => void
   onTogglePortfolios: (show: boolean) => void
   peopleCounts?: Record<string, number>
+  meName?: string
+  onAddYourself?: () => void
 }
 
 export function InvestorMap({
@@ -63,6 +65,8 @@ export function InvestorMap({
   onLoadPortfolios,
   onTogglePortfolios,
   peopleCounts,
+  meName,
+  onAddYourself,
 }: InvestorMapProps) {
   const isDesktop = useMediaQuery('(min-width: 1024px)')
   const [filter, setFilter] = useState<'all' | 'paths'>('all')
@@ -345,7 +349,12 @@ export function InvestorMap({
                 })}
               </svg>
               <div ref={founderColRef} className="relative row-span-2">
-                <FounderCard ref={founderRef} query={query} />
+                <FounderCard
+                  ref={founderRef}
+                  query={query}
+                  meName={meName}
+                  onAddYourself={onAddYourself}
+                />
               </div>
               <div className="relative">
                 <h3 className="text-sm font-semibold">{STAGE_LABEL[query.stage]} investors</h3>
@@ -386,7 +395,7 @@ export function InvestorMap({
         </div>
       ) : (
         <div className="flex flex-col gap-6">
-          <FounderCard query={query} />
+          <FounderCard query={query} meName={meName} onAddYourself={onAddYourself} />
           <section className="flex flex-col gap-3">
             <div>
               <h3 className="text-sm font-semibold">{STAGE_LABEL[query.stage]} investors</h3>
