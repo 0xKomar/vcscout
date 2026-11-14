@@ -4,11 +4,11 @@ Stan na **14 listopada 2026, Europe/Warsaw**. Sprawdzono kod VCScout,
 aktualną dokumentację dostawców i publiczne źródła oraz wykonano dwa zapytania
 do Cala. To research i propozycja implementacji; funkcja nie została wdrożona.
 
-**Rekomendacja: dobudować import własnych kontaktów z LinkedIna, dopasowanie do
-partnerów i listę kandydatów do poproszenia o intro z wyjaśnieniem powiązania.
-Zacząć od CSV i własnego modelu danych. Dla automatycznej synchronizacji
-sprawdzić LinkedIn Member Data Portability, a dla historii zawodowych i gotowych
-powiązań przetestować The Swarm na małej próbce.**
+**Aktualizacja wymagań: integracja ma działać bez CSV. Aktualna rekomendacja
+to Unipile + UniLogin i wspólne kontakty wyszukiwane dla wybranego partnera;
+alternatywnie The Swarm z synchronizacją przez rozszerzenie. Szczegóły i źródła:
+[warianty bez CSV](linkedin-without-csv.md).** Poniższy dokument zachowuje
+porównanie źródeł i wyniki prób Cala; pierwotny plan importu został zastąpiony.
 
 ## 1. Co już mamy i czego brakuje
 
@@ -34,7 +34,7 @@ Rozbudowa powinna odpowiadać na trzy osobne pytania:
 
 ## 2. Jak uzyskać własną sieć z LinkedIna
 
-### A. Archiwum i Connections.csv — najlepszy pierwszy krok
+### A. Archiwum i Connections.csv — opcja wykluczona z obecnego zakresu
 
 Oficjalny eksport zawiera imię, nazwisko, publiczny adres profilu, firmę,
 stanowisko, datę połączenia i czasem e-mail. Adresy e-mail zależą od ustawień
@@ -243,9 +243,10 @@ Wspólna firma bez pokrywających się dat, sam udział w dużym wydarzeniu lub
 ta sama branża nie wystarczają do stwierdzenia znajomości. Nie pokazywać
 procentów „szans na intro” na podstawie samego score dostawcy.
 
-## 5. Proponowany zakres implementacji
+## 5. Pierwotny zakres implementacji — zastąpiony wariantem bez CSV
 
-To propozycja techniczna, a nie funkcje już istniejące:
+To archiwalna propozycja techniczna, a nie funkcje już istniejące.
+Obecny kierunek opisuje [plan bez CSV](linkedin-without-csv.md):
 
 1. **Import i dopasowanie lokalne.** Parser `Connections.csv`, podgląd liczby
    rekordów, aktualizacja po kolejnym imporcie, usunięcie importu. Obsłużyć BOM,
@@ -275,20 +276,19 @@ integrację metadanych rozmów. Sam LinkedIn connection tego nie mierzy.
 
 ## 6. Decyzja i próba akceptacyjna
 
-**Pierwsza wersja:** Connections.csv + istniejący wybór partnerów + ustalanie
-ich profili + bezpośrednie dopasowania i kandydaci z wyjaśnieniami. Daje
-użyteczny wynik nawet bez dostawcy zewnętrznego, choć nie odtworzy pełnej sieci.
+**Pierwsza wersja bez CSV:** podłączenie konta przez Unipile/UniLogin,
+istniejący wybór partnerów i lista wspólnych kontaktów pobierana na żądanie.
+Alternatywa: The Swarm z rozszerzeniem i API gotowych relacji.
 
-**Kolejny krok:** osobisty pilotaż Member Data Portability oraz porównanie
-The Swarm z własnym dopasowaniem. Najpierw wybrać np. 20 dobrze znanych
-kontaktów i 10 partnerów z naszych wyników. Te liczby są propozycją próby,
-nie deklaracją pokrycia.
+**Kolejny krok:** próba na kilku partnerach już obecnych w VCScout oraz
+porównanie zwróconych kontaktów z widokiem LinkedIna. Wariant oficjalnego
+Member Data Portability pozostaje osobną możliwością dla EOG.
 
 Ocenić ręcznie: poprawność tożsamości, aktualność ról, dostępność źródeł,
 potwierdzone przez Ciebie użyteczne dojścia, fałszywe powiązania, czas i koszt.
 Raportować osobno brak danych oraz negatywny wynik. Przy nieznanej relacji
 szkic wiadomości powinien pytać o znajomość, a nie twierdzić, że ona istnieje.
 
-Nie otrzymano Twojego eksportu ani tokenu LinkedIna. Nie zidentyfikowano zatem
-jeszcze konkretnych pośredników z Twojej sieci. Dostęp DMA, pokrycie komercyjnych
-API i gotowość znajomych do przedstawienia pozostają do sprawdzenia w pilocie.
+Nie podłączono Twojego konta LinkedIn. Nie zidentyfikowano zatem jeszcze
+konkretnych pośredników z Twojej sieci. Dostęp DMA, pokrycie komercyjnych API
+i gotowość znajomych do przedstawienia pozostają do sprawdzenia w pilocie.

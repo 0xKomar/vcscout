@@ -19,20 +19,20 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_COMPANIES = ["Qdrant", "Attio", "Metaview"]
 
 
-def read_key(env_file):
-    key = os.environ.get("CALA_API_KEY", "").strip()
+def read_key(env_file, name="CALA_API_KEY"):
+    key = os.environ.get(name, "").strip()
     if key:
         return key
     if env_file.is_file():
         for line in env_file.read_text().splitlines():
-            name, separator, value = line.removeprefix("export ").partition("=")
-            if separator and name.strip() == "CALA_API_KEY":
+            variable, separator, value = line.removeprefix("export ").partition("=")
+            if separator and variable.strip() == name:
                 value = value.strip()
                 if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
                     value = value[1:-1]
                 if value:
                     return value
-    raise ValueError(f"Set CALA_API_KEY in the environment or in {env_file}")
+    raise ValueError(f"Set {name} in the environment or in {env_file}")
 
 
 def request_plan(companies):

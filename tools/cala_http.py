@@ -1,4 +1,4 @@
-"""Bounded Cala HTTP requests through system curl, without keys in arguments."""
+"""Bounded JSON API requests through system curl, without keys in arguments. Defaults to Cala."""
 
 import json
 import subprocess
@@ -6,12 +6,12 @@ import tempfile
 import time
 
 
-def call_json(path, key, payload=None, timeout=90):
+def call_json(path, key, payload=None, timeout=90, base="https://api.cala.ai/v1/", auth="X-API-KEY: "):
     started = time.monotonic()
     if any(character in key for character in "\r\n"):
         raise ValueError("Invalid API key format")
     with tempfile.NamedTemporaryFile(mode="w", prefix="cala-headers-", encoding="utf-8") as headers:
-        headers.write(f"X-API-KEY: {key}\nContent-Type: application/json\n")
+        headers.write(f"{auth}{key}\nContent-Type: application/json\n")
         headers.flush()
         command = [
             "curl", "-q", "--silent", "--show-error", "--connect-timeout", "10",
@@ -21,7 +21,7 @@ def call_json(path, key, payload=None, timeout=90):
         ]
         if payload is not None:
             command.extend(["--data-binary", "@-"])
-        command.append("https://api.cala.ai/v1/" + path)
+        command.append(base + path)
         try:
             response = subprocess.run(command, input=json.dumps(payload) if payload is not None else None,
                                       text=True, capture_output=True, timeout=timeout + 5)
