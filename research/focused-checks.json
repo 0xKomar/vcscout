@@ -1,0 +1,32 @@
+[
+  {
+    "label": "breadth-granola-lightdash-incident",
+    "endpoint": "query",
+    "input": "For Granola (the AI meeting notes startup), Lightdash, and incident.io, list their publicly announced pre-seed/seed rounds and their first Series A. One row per company and round. Return company, round_type, announcement_date, lead_investors, investors, source_urls. Use null for unknown facts; do not combine rounds."
+  },
+  {
+    "label": "breadth-dust-langfuse-n8n",
+    "endpoint": "query",
+    "input": "For Dust (the French enterprise AI assistant startup, dust.tt), Langfuse, and n8n, list their publicly announced pre-seed/seed rounds and their first Series A. One row per company and round. Return company, round_type, announcement_date, lead_investors, investors, source_urls. Use null for unknown facts; do not combine rounds."
+  },
+  {
+    "label": "breadth-sana-elevenlabs-lovable",
+    "endpoint": "query",
+    "input": "For Sana Labs (Sweden), ElevenLabs, and Lovable (the Swedish AI app builder), list their publicly announced pre-seed/seed rounds and their first Series A. One row per company and round. Return company, round_type, announcement_date, lead_investors, investors, source_urls. Use null for unknown facts; do not combine rounds."
+  },
+  {
+    "label": "attio-point-nine-person",
+    "endpoint": "search",
+    "input": "Which person at Point Nine is publicly linked to its investment in Attio? Give the person's name, the exact documented connection, and direct source URLs."
+  },
+  {
+    "label": "metaview-plural-person",
+    "endpoint": "search",
+    "input": "Which person at Plural is publicly linked to its investment in Metaview? Give the person's name, the exact documented connection, and direct source URLs."
+  },
+  {
+    "label": "seedcamp-to-accel-discovery",
+    "endpoint": "query",
+    "input": "Find up to 5 software startups where Seedcamp invested in an earlier funding round and Accel first invested in a later round. Return company, Seedcamp_round, Seedcamp_round_date, Accel_first_round, Accel_round_date, source_urls. Exclude cases where the funds first invested together in the same round. Use null for unknown facts."
+  }
+]

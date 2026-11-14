@@ -1,0 +1,17 @@
+[
+  {
+    "label": "sana-labs-single",
+    "endpoint": "query",
+    "input": "List Sana Labs (Sweden)'s seed round and first Series A, with fields company, round_type, announcement_date, lead_investors, investors, source_urls. One row per round. Use null for unknown lead investors."
+  },
+  {
+    "label": "elevenlabs-single",
+    "endpoint": "query",
+    "input": "List ElevenLabs' seed round and first Series A, with fields company, round_type, announcement_date, lead_investors, investors, source_urls. One row per round. Use null for unknown lead investors."
+  },
+  {
+    "label": "lovable-single",
+    "endpoint": "query",
+    "input": "List Lovable (the Swedish AI app builder)'s publicly announced pre-seed, seed and first Series A, with fields company, round_type, announcement_date, lead_investors, investors, source_urls. One row per round. Use null for unknown lead investors."
+  }
+]

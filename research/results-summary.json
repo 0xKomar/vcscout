@@ -1,0 +1,449 @@
+{
+  "as_of": "2026-11-14 Europe/Warsaw",
+  "scope": "Purposive European software sample; retrieval feasibility, not a representative accuracy benchmark.",
+  "knowledge_calls": 15,
+  "knowledge_http_200": 15,
+  "knowledge_fallbacks": 3,
+  "target_companies": 12,
+  "companies_with_returned_round_records": 12,
+  "round_rows_with_date": 30,
+  "round_placeholders_without_date": 1,
+  "curl_knowledge_latency_seconds": {
+    "min": 14.42,
+    "median": 44.91,
+    "max": 85.89
+  },
+  "curl_graph_latency_seconds": {
+    "min": 0.4,
+    "median": 0.74,
+    "max": 1.95
+  },
+  "graph_http_429_observed": 1,
+  "requests": [
+    {
+      "company": "Qdrant",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 263.08,
+      "evidence_file": "research/cala-runs/20261113T225950592402Z/responses.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "company": "Attio",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 48.54,
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "company": "Attio",
+      "endpoint": "search",
+      "status": 200,
+      "elapsed_seconds": 79.84,
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "answer_state": "fallback"
+    },
+    {
+      "company": "Metaview",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 39.56,
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "company": "Metaview",
+      "endpoint": "search",
+      "status": 200,
+      "elapsed_seconds": 83.9,
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "answer_state": "fallback"
+    },
+    {
+      "company": "Qdrant",
+      "endpoint": "search",
+      "status": 200,
+      "elapsed_seconds": 62.28,
+      "evidence_file": "research/cala-runs/20261113T230635723053Z/responses.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "breadth-granola-lightdash-incident",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 39.71,
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/01.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "breadth-dust-langfuse-n8n",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 53.43,
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/02.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "breadth-sana-elevenlabs-lovable",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 85.89,
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/03.json",
+      "answer_state": "fallback"
+    },
+    {
+      "label": "attio-point-nine-person",
+      "endpoint": "search",
+      "status": 200,
+      "elapsed_seconds": 14.42,
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/04.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "metaview-plural-person",
+      "endpoint": "search",
+      "status": 200,
+      "elapsed_seconds": 33.94,
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/05.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "seedcamp-to-accel-discovery",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 45.18,
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/06.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "sana-labs-single",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 33.28,
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/01.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "elevenlabs-single",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 31.14,
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/02.json",
+      "answer_state": "data_returned"
+    },
+    {
+      "label": "lovable-single",
+      "endpoint": "query",
+      "status": 200,
+      "elapsed_seconds": 44.64,
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/03.json",
+      "answer_state": "data_returned"
+    }
+  ],
+  "round_records": [
+    {
+      "evidence_file": "research/cala-runs/20261113T225950592402Z/responses.json",
+      "company": "Qdrant",
+      "round_type": "Pre-Seed",
+      "announcement_date": "January 2022",
+      "amount": "2,000,000",
+      "currency": "EUR",
+      "lead_investors": null,
+      "investors": "42CAP, IBB Ventures, angel investors",
+      "source_urls": "https://nordic9.com/news/qdrant-raises-2-million-in-a-pre-seed-round-of-financing-backed-by-42cap-and-ibb-ventures, https://www.startbase.com/news/deeptech-qdrant-bekommt-2-millionen-euro"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T225950592402Z/responses.json",
+      "company": "Qdrant",
+      "round_type": "Seed",
+      "announcement_date": "April 2023",
+      "amount": "7,500,000",
+      "currency": "USD",
+      "lead_investors": "Unusual Ventures",
+      "investors": "Unusual Ventures, 42CAP, IBB Ventures, angel investors",
+      "source_urls": "https://qdrant.tech/blog/seed-round, https://www.fyb.de/en/deep-tech-start-up-qdrant-oversubscribed-several-times-in-e-7-5-million-seed-round, https://www.vc-magazin.de/blog/2023/04/20/qdrant-seedfinanzierung-mit-beteiligung-der-ibb-ventures"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T225950592402Z/responses.json",
+      "company": "Qdrant",
+      "round_type": "Series A",
+      "announcement_date": "2024-01-23",
+      "amount": "28,000,000",
+      "currency": "USD",
+      "lead_investors": "Spark Capital",
+      "investors": "Spark Capital, Unusual Ventures, 42CAP",
+      "source_urls": "https://qdrant.tech/blog/series-a-funding-round/, https://pulse2.com/qdrant-28-million-funding, https://www.thesaasnews.com/news/qdrant-secures-28-million-in-series-a"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T225950592402Z/responses.json",
+      "company": "Qdrant",
+      "round_type": "Series B",
+      "announcement_date": "2026-03-12",
+      "amount": "50,000,000",
+      "currency": "USD",
+      "lead_investors": "AVP (formerly AXA Venture Partners)",
+      "investors": "AVP, Bosch Ventures, Unusual Ventures, Spark Capital, 42CAP",
+      "source_urls": "https://qdrant.tech/blog/series-b-announcement/, https://www.businesswire.com (Qdrant Raises $50 Million Series B), https://europealternatives.com/en/content/funding-qdrant-2026-03"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Attio",
+      "round_type": "Seed",
+      "announcement_date": "24 November 2021",
+      "amount": "$7.7M",
+      "currency": "USD",
+      "lead_investors": "Point Nine Capital",
+      "investors": "Point Nine Capital, Balderton Capital, Headline, Passion Capital, Mathilde Collin, Vinay Hiremath, Sahed Khan, Paul Forster",
+      "source_urls": "https://www.uktechnews.info/2021/11/24/attio-secures-5-78-million-seed-investment-led-by-point-nine-capital, https://pitchbook.com/newsletter/londons-attio-pulls-in-77m-seed-investment, https://www.thesaasnews.com/news/attio-raises-7-7-million-in-seed-round"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Attio",
+      "round_type": "Series A",
+      "announcement_date": "2 March 2023",
+      "amount": "$23.5M",
+      "currency": "USD",
+      "lead_investors": "Redpoint Ventures",
+      "investors": "Redpoint Ventures, Balderton Capital, Point Nine",
+      "source_urls": "https://www.vcaonline.com/news/2023030203/attio-raises-23-5-million-series-a-to-usher-in-a-new-era-of-crm-that-combines-modern-data-architecture-with-a-cutting-edge-user-experience, https://seedtable.com/companies/attio, https://www.cmswire.com/the-wire/attio-raises-235-million-series-a-to-usher-in-a-new-era-of-crm"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Attio",
+      "round_type": "Series B",
+      "announcement_date": "28 August 2024",
+      "amount": "$33M",
+      "currency": "USD",
+      "lead_investors": "Redpoint Ventures, Balderton Capital, Point Nine",
+      "investors": "Redpoint Ventures, Balderton Capital, Point Nine, 01 Advisors",
+      "source_urls": "https://seedtable.com/companies/attio/funding-rounds/series-b-2024-08, https://www.thesaasnews.com/news/attio-raises-33-million-in-funding"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Attio",
+      "round_type": "Series B",
+      "announcement_date": "26 August 2025",
+      "amount": "$52M",
+      "currency": "USD",
+      "lead_investors": "GV (Google Ventures)",
+      "investors": "GV (Google Ventures), Redpoint Ventures, Balderton Capital, Point Nine, 01 Advisors (01A)",
+      "source_urls": "https://finance.yahoo.com/news/attio-raises-52m-series-b-120000478.html, https://seedtable.com/companies/attio"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Metaview",
+      "round_type": "Pre-Seed",
+      "announcement_date": "January 2019",
+      "amount": "$2M",
+      "currency": "USD",
+      "lead_investors": "Fly Ventures, Village Global",
+      "investors": "Fly Ventures, Village Global, Seedcamp, Garuda Ventures",
+      "source_urls": "https://multiples.vc/private-comps/metaview"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Metaview",
+      "round_type": "Seed",
+      "announcement_date": "1 December 2021",
+      "amount": "£4.5M (~$6M)",
+      "currency": "GBP (USD equivalent reported)",
+      "lead_investors": "Vertex Ventures US",
+      "investors": "Vertex Ventures US, Fly Ventures, Seedcamp, Village Global, PrimeSet, Moving Capital (Uber alumni fund), Palumni (Palantir alumni fund), Abakar Saidov, Matt Robinson, Jerry Ting",
+      "source_urls": "https://www.uktechnews.info/2021/12/01/metaview-global-secures-4-5-million-seed-investment-led-by-vertex-ventures-us"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Metaview",
+      "round_type": "Series A",
+      "announcement_date": "March 2024",
+      "amount": "$7M",
+      "currency": "USD",
+      "lead_investors": "Plural",
+      "investors": "Plural, Coelius Capital, Vertex Ventures US, Seedcamp, Village Global, Kyle Parrish, Barney Hussey-Yeo",
+      "source_urls": "https://www.thesaasnews.com/news/metaview-secures-7-million-in-funding"
+    },
+    {
+      "evidence_file": "research/cala-runs/20261113T230635294316Z/responses.json",
+      "company": "Metaview",
+      "round_type": "Series B",
+      "announcement_date": "June 2025",
+      "amount": "$35M",
+      "currency": "USD",
+      "lead_investors": "GV (Google Ventures)",
+      "investors": "GV, Plural, Vertex Ventures US, Seedcamp, Coelius Capital, True Equity, Victor Riparbelli, Barney Hussey-Yeo",
+      "source_urls": "https://www.unleash.ai/hr-technology/news/google-ventures-leads-35-million-series-b-funding-in-metaview"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/01.json",
+      "company": "Granola",
+      "round_type": "Seed",
+      "announcement_date": "May 2023",
+      "lead_investors": "Lightspeed Venture Partners",
+      "investors": "Lightspeed Venture Partners, betaworks, FirstMinute",
+      "source_urls": "https://thenextweb.com/news/granola-series-c-meeting-ai-enterprise-context, https://www.startupmag.co.uk/funding/granola-raised-32370000"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/01.json",
+      "company": "Granola",
+      "round_type": "Series A",
+      "announcement_date": "October 2024",
+      "lead_investors": "Spark Capital",
+      "investors": "Spark Capital, AI Grant, Lightspeed, betaworks",
+      "source_urls": "https://startuprise.co.uk/granola-secures-20mn-in-series-a-round-funding"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/01.json",
+      "company": "Lightdash",
+      "round_type": "Seed",
+      "announcement_date": "October 6, 2022",
+      "lead_investors": "Accel",
+      "investors": "Accel, Moonfire Ventures, Y Combinator, Guy Podjarny, Ashley Kramer, Tristan Handy, Lars Bjork",
+      "source_urls": "https://tech.eu/2022/10/07/uk-founded-business-intelligence-platform-lightdash-raises-84m-in-a-round-led-by-accel, https://www.crowdfundinsider.com/2022/10/197214-business-intelligence-provider-lightdash-raises-8-4-million-seed-round-led-by-accell"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/01.json",
+      "company": "Lightdash",
+      "round_type": "Series A",
+      "announcement_date": "October 8, 2024",
+      "lead_investors": "Accel",
+      "investors": "Accel, Operator Partners, Shopify Ventures, Y Combinator, Michael Grinich, Shuo Wang",
+      "source_urls": "https://www.cbinsights.com/company/hubble-3/financials, https://nordic9.com/news/lightdash-raised-11-million-in-a-series-a-round-of-funding-led-by-accel-joined-by-operator-partners-shopify-ventures-y-combinator-and-angel-investors"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/01.json",
+      "company": "incident.io",
+      "round_type": "Seed",
+      "announcement_date": "~September/October 2021",
+      "lead_investors": "Index Ventures, Point Nine Capital",
+      "investors": "Index Ventures, Point Nine Capital, Tom Blomfield, Jonas Templestein, Eileen Burbidge, Renaud Visage, Vinay Hiremath",
+      "source_urls": "https://www.goodwinlaw.com/en/news-and-events/news/2021/10/10_06-index-ventures-leads-a-$4-7m-seed, https://nordic9.com/news/incidentio-raised-capital-funding"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/01.json",
+      "company": "incident.io",
+      "round_type": "Series A",
+      "announcement_date": "July 2022",
+      "lead_investors": "Index Ventures",
+      "investors": "Index Ventures, Point Nine Capital, Mantis VC, Mike Krieger (Instagram co-founder), Lachy Groom",
+      "source_urls": "https://www.thesaasnews.com/news/incident-io-raises-28-7-million-in-series-a, https://nordic9.com/news/incidentio-secures-287-million-in-series-a-funding-round-led-by-index-ventures"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/02.json",
+      "company": "Dust",
+      "round_type": "Seed",
+      "announcement_date": "June 27, 2023",
+      "lead_investors": "Sequoia Capital",
+      "investors": "Sequoia Capital, XYZ, GG1, AI Grant, Connect Ventures, Motier Ventures, Seedcamp, Remote First, Tiny Supercomputer",
+      "source_urls": "https://eustartup.news/paris-based-ai-startup-dust-scores-e5m-seed-funding-catching-the-eye-of-sequoia-capital, https://app.dealroom.co/companies/dust_1"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/02.json",
+      "company": "Dust",
+      "round_type": "Series A",
+      "announcement_date": "June 27, 2024",
+      "lead_investors": "Sequoia Capital",
+      "investors": "Sequoia Capital, XYZ, GG1, Connect Ventures, Seedcamp, Motier Ventures",
+      "source_urls": "https://www.seedtable.com/startups/Dust-DZDRMDW, https://app.fundz.net/fundings/dust-funding-round-series-a-569a28"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/02.json",
+      "company": "Langfuse",
+      "round_type": "Seed",
+      "announcement_date": "November 7, 2023",
+      "lead_investors": "Y Combinator",
+      "investors": "Y Combinator, La Famiglia VC, Lightspeed Venture Partners, General Catalyst",
+      "source_urls": "https://www.seedtable.com/startups/langfuse, https://www.vcbacked.co/company/langfuse, https://nordic9.com/news/langfuse-joined-y-combinator"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/02.json",
+      "company": "Langfuse",
+      "round_type": "Series A",
+      "announcement_date": null,
+      "lead_investors": null,
+      "investors": null,
+      "source_urls": "Langfuse did not announce a standalone Series A. The company was acquired by ClickHouse (announced alongside ClickHouse's $400M Series D in January 2026) before raising one."
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/02.json",
+      "company": "n8n",
+      "round_type": "Seed",
+      "announcement_date": "March 13, 2020",
+      "lead_investors": "Sequoia Capital",
+      "investors": "Sequoia Capital, firstminute capital, System.One, Runa Capital, Tiny, Ilkka Paananen, Nan Li, Kevin Hartz, Daniel Lie",
+      "source_urls": "https://techcrunch.com/2020/03/13/n8n-a-fair-code-workflow-automation-platform-raises-seed-from-sequoia-as-vc-firm-steps-up-in-europe, https://tracxn.com/d/companies/n8n/__J5xwUZ9C29t7Du-yVvv0S99EWc7s69t2NGt5YmhQG0A/funding-and-investors"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231100463145Z/02.json",
+      "company": "n8n",
+      "round_type": "Series A",
+      "announcement_date": "April 26, 2021",
+      "lead_investors": "Felicis Ventures",
+      "investors": "Felicis Ventures, Sequoia Capital, firstminute capital, Harpoon, Ilkka Paananen, Kevin Hartz",
+      "source_urls": "https://techcrunch.com/2021/04/26/n8n-raises-12m-for-its-fair-code-approach-to-low-code-workflow-automation, https://siliconvalleyinvestclub.com/funding-rounds?q=n8n"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/01.json",
+      "company": "Sana Labs",
+      "round_type": "Seed",
+      "announcement_date": "June 2018",
+      "lead_investors": null,
+      "investors": "John Lindfors, Katarina Martinson, Leksell Social Ventures, Sven Hagströmer, R Ventures",
+      "source_urls": "https://nordic9.com/news/sana-labs-added-1-5m-from-angel-investors-news2055903891 ; https://www.seedtable.com/funding-round/Sana_Labs_June_2018_Seed_Funding_Round-Z5B85VP"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/01.json",
+      "company": "Sana Labs",
+      "round_type": "Series A",
+      "announcement_date": "January 2021",
+      "lead_investors": "EQT Ventures",
+      "investors": "EQT Ventures (lead), Workday Ventures, Max Ventures, Leksell Social Ventures, NEA (New Enterprise Associates), Menlo Ventures, Sophia Bendz, Fredrik Jung Abbou",
+      "source_urls": "https://nordic9.com/news/sana-labs-to-raise-sek-150m-from-eqt-ventures-news3404975066 ; https://www.seedtable.com/funding-round/Sana_Labs_Series_A_round%2C_January_2021-GE9XWYP ; https://sweden.dlapiper.com/en/news/dla-piper-has-advised-eqt-ventures-connection-their-investment-swedish-company-sana-labs"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/02.json",
+      "company": "ElevenLabs",
+      "round_type": "Pre-Seed / Seed",
+      "announcement_date": "January 25, 2023",
+      "lead_investors": "Credo Ventures",
+      "investors": "Concept Ventures, Peter Czaban, Tytus Cytowski (angel investors)",
+      "source_urls": "https://elevenlabs.io/blog/elevenlabs-raises-2m-pre-seed-and-announces-ai-speech-platform-promising-to-revolutionize-audio-storytelling, https://www.thesaasnews.com/news/elevenlabs-secures-2-million-in-pre-seed-round"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/02.json",
+      "company": "ElevenLabs",
+      "round_type": "Series A",
+      "announcement_date": "May 17, 2023",
+      "lead_investors": "Nat Friedman, Daniel Gross, Andreessen Horowitz",
+      "investors": "Creator Ventures, SV Angel, Credo Ventures, Concept Ventures, Mike Krieger, Brendan Iribe, Mustafa Suleyman, Tim O'Reilly, Guillermo Rauch, Aravind Srinivas, Siqi Chen, Ali Albazaz, Anjney Midha, Dima Shvets, Embark Studios, Storytel, TheSoul Publishing",
+      "source_urls": "https://www.verdict.co.uk/voice-ai-start-up-elevenlabs-raises-19m-in-series-a-funding, https://conceptventures.vc/news/elevenlabs-raises-19m-series-a"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/03.json",
+      "company": "Lovable",
+      "round_type": "Pre-Seed",
+      "announcement_date": "October 2024",
+      "lead_investors": "Hummingbird Ventures, byFounders",
+      "investors": "Hummingbird Ventures, byFounders, DeepMind angel operators, Mattias Miksche, Bjarke Klinge Staun, Siavash Ghorbani (Shopify), Fredrik Hjelm (Voi), Stefan Lindeberg (Creandum co-founder), other AI founder angels",
+      "source_urls": "https://tech.eu/2024/10/07/lovable-raises-7-5m-for-gpt-engineer, https://www.thesaasnews.com/news/lovable-secures-7-5m-in-pre-seed-round"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/03.json",
+      "company": "Lovable",
+      "round_type": "Seed",
+      "announcement_date": "February 2025",
+      "lead_investors": "Creandum",
+      "investors": "Creandum, Charlie Songhurst, Adam D'Angelo, Thomas Wolf (Hugging Face co-founder), Eric Bernhardsson, Flat Capital, Greens Ventures, Hummingbird Ventures, byFounders, Visionaries Club, 20VC",
+      "source_urls": "https://finance.yahoo.com/news/swedens-lovable-app-building-ai-174535054.html, https://startuprise.co.uk/lovable-raises-15mn-pre-series-a-round-funding"
+    },
+    {
+      "evidence_file": "research/cala-runs/focused-20261113T231425545689Z/03.json",
+      "company": "Lovable",
+      "round_type": "Series A",
+      "announcement_date": "July 2025",
+      "lead_investors": "Accel",
+      "investors": "Accel, 20VC, byFounders, Creandum, Hummingbird, Visionaries Club, plus angel investors",
+      "source_urls": "https://www.accel.com/noteworthies/accels-200m-series-a-in-lovable---enabling-the-last-99, https://lovable.dev/blog/200m-series-a-fundraise, https://www.thesaasnews.com/news/lovable-raises-200m-series-a-at-1-8b-valuation"
+    }
+  ]
+}
