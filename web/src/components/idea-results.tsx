@@ -35,7 +35,7 @@ import { useResolvedPartners } from '@/hooks/use-partners'
 import { introKey } from '@/lib/intro'
 import { linkedinProfileKey } from '@/lib/linkedin-csv'
 import { bestPathIds, manualLinkedinNodeId, mapSeed, personIdentity, type NetNode } from '@/lib/network'
-import { TUTORIAL_STEPS } from '@/lib/tutorial'
+import { TUTORIAL_PREVIEW, TUTORIAL_STEPS } from '@/lib/tutorial'
 import { cn } from '@/lib/utils'
 import {
   defaultEvidenceCompany,
@@ -64,6 +64,7 @@ import type {
 
 interface IdeaResultsProps {
   state: DiscoveryState
+  initialWalkthrough?: boolean
   onSubmitIdea: (query: IdeaQuery) => void
   retrySimilar: () => void
   retryCompany: (company: string) => void
@@ -85,6 +86,7 @@ const EMPTY_PROFILE: MeProfile = {
 
 export function IdeaResults({
   state,
+  initialWalkthrough = true,
   onSubmitIdea,
   retrySimilar,
   retryCompany,
@@ -94,9 +96,11 @@ export function IdeaResults({
   const reduceMotion = useReducedMotion()
   const [tab, setTab] = useState<TabValue>('map')
   const [view, setView] = useState<MapView>('intros')
-  const [tutorialOpen, setTutorialOpen] = useState(true)
+  const [tutorialOpen, setTutorialOpen] = useState(initialWalkthrough)
+  const [tutorialLocked, setTutorialLocked] = useState(initialWalkthrough)
   const [tutorialStep, setTutorialStep] = useState(0)
-  const [tutorialInteracted, setTutorialInteracted] = useState(false)
+  const [maxVisitedStep, setMaxVisitedStep] = useState(0)
+  const [previewSelection, setPreviewSelection] = useState<string | null>(TUTORIAL_PREVIEW.targetId)
   const [selection, setSelection] = useState<Selection | null>(null)
   const [graphSelection, setGraphSelection] = useState<string | null>(null)
   const [graphPerson, setGraphPerson] = useState<{
@@ -380,7 +384,6 @@ export function IdeaResults({
     }
     const picked = intros.network.nodes.find((node) => node.id === id)
     if (picked?.target) {
-      if (!tutorialInteracted) setTutorialOpen(false)
       setIntroTarget({
         name: picked.label,
         org: picked.fund ?? picked.company ?? '',
@@ -391,13 +394,18 @@ export function IdeaResults({
     if (!isXl) setSheetOpen(true)
   }
 
+  const currentTutorialStep = TUTORIAL_STEPS[tutorialStep] ?? TUTORIAL_STEPS[0]
+  const tutorialPreviewActive = tutorialOpen && !!currentTutorialStep.previewIntro && !introTarget
+
   const applyTutorialStep = (nextIndex: number, scroll = true) => {
     const step = TUTORIAL_STEPS[nextIndex]
     if (!step) return
-    setTutorialInteracted(true)
     setTutorialStep(nextIndex)
+    setMaxVisitedStep((prev) => Math.max(prev, nextIndex))
+    setPreviewSelection(TUTORIAL_PREVIEW.targetId)
     setTab(step.tab)
     setView(step.view)
+    if (step.id === 'intros-graph') setIntroMode('graph')
     setSelection(null)
     setGraphSelection(null)
     setGraphPerson(null)
@@ -409,17 +417,35 @@ export function IdeaResults({
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           const isSingleColumn = window.innerWidth < 1280
-          const tutorialEl = isSingleColumn && nextIndex > 0
-            ? document.querySelector<HTMLElement>('[data-testid="results-tutorial"]')
-            : null
+          if (isSingleColumn && nextIndex > 0) {
+            const anchor =
+              step.id === 'drafts'
+                ? document.querySelector<HTMLElement>('[data-tutorial="message-drafts"]')
+                : document.querySelector<HTMLElement>('[data-testid="results-tutorial"]')
+            if (!anchor) return
+            const top = anchor.getBoundingClientRect().top + window.scrollY - 88
+            window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'instant' : 'smooth' })
+            return
+          }
           const selector = step.targets.map((key) => `[data-tutorial="${key}"]`).join(', ')
-          const targetEl = tutorialEl ?? document.querySelector<HTMLElement>(selector)
+          const targetEl = document.querySelector<HTMLElement>(selector)
           if (!targetEl) return
-          const top = targetEl.getBoundingClientRect().top + window.scrollY - 88
-          window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'instant' : 'smooth' })
+          targetEl.scrollIntoView({
+            block: 'center',
+            behavior: reduceMotion ? 'instant' : 'smooth',
+          })
         })
       })
     }
+  }
+
+  const finishTutorial = () => {
+    setTutorialLocked(false)
+    setTutorialOpen(false)
+    setTab('map')
+    setView('intros')
+    setIntroMode('list')
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' })
   }
 
   const onGraphPersonClick = (person: Partner, fund: string, company: string) => {
@@ -576,7 +602,6 @@ export function IdeaResults({
           setManualSelectionKey(null)
           const picked = id ? intros.network.nodes.find((node) => node.id === id) : null
           if (picked?.target) {
-            if (!tutorialInteracted) setTutorialOpen(false)
             setIntroTarget({
               name: picked.label,
               org: picked.fund ?? picked.company ?? '',
@@ -590,8 +615,37 @@ export function IdeaResults({
     </div>
   )
 
-  const introGraphView = !introTarget && !hasManualPeople ? (
-    <div className="flex min-h-56 flex-col items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/50 p-8 text-center">
+  const previewNode =
+    TUTORIAL_PREVIEW.network.nodes.find((node) => node.id === previewSelection) ??
+    TUTORIAL_PREVIEW.targetNode
+  const previewPath =
+    TUTORIAL_PREVIEW.paths.get(previewNode.id) ?? TUTORIAL_PREVIEW.targetPath
+
+  const introGraphView = tutorialPreviewActive ? (
+    <div data-tutorial="intros-graph" className="flex flex-col gap-2">
+      <p className="inline-flex self-start rounded-full border border-brand/25 bg-brand-soft px-3 py-1 font-mono text-[10px] uppercase tracking-[0.11em] text-brand">
+        Walkthrough example · Illustrative connection path (not a real link)
+      </p>
+      <NetworkGraphView
+        network={TUTORIAL_PREVIEW.network}
+        paths={TUTORIAL_PREVIEW.paths}
+        pathIds={TUTORIAL_PREVIEW.pathIds}
+        selection={previewNode.id}
+        focusKey=""
+        onSelect={(id) => setPreviewSelection(id ?? TUTORIAL_PREVIEW.targetId)}
+        expandStates={{}}
+        onExpand={() => {}}
+        running={false}
+        inFlight={0}
+        canSearchDeeper={false}
+        maxDepth={3}
+        onSearchDeeper={() => {}}
+        onStop={() => {}}
+        researchEnabled={false}
+      />
+    </div>
+  ) : !introTarget && !hasManualPeople ? (
+    <div data-tutorial="intros-graph" className="flex min-h-56 flex-col items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/50 p-8 text-center">
       <div className="flex items-center" aria-hidden>
         <span className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground"><UserRound className="size-4" /></span>
         <span className="w-10 border-t border-dashed border-brand/40" />
@@ -605,7 +659,7 @@ export function IdeaResults({
       </p>
     </div>
   ) : (
-    <div>
+    <div data-tutorial="intros-graph">
       {!introTarget && (
         <p className="mb-2 text-xs leading-5 text-muted-foreground">
           Your added people are shown below. Choose a target to begin researching connections.
@@ -655,40 +709,66 @@ export function IdeaResults({
         onLoadPortfolios={portfolios.load}
       />
     ) : view === 'intros' ? (
-      <NetworkDetail
-        node={selectedNode}
-        network={intros.network}
-        path={selectedPath}
-        me={introProfile ?? EMPTY_PROFILE}
-        idea={state.query.idea}
-        expandState={selectedNode ? intros.expandStates[selectedNode.id] : undefined}
-        onExpand={researchNode}
-        onSelectNode={onIntroSelect}
-        isContact={selectedIsContact}
-        onToggleContact={(node, organization) => {
-          if (selectedIsContact) meStore.removeContact(node.label, node.contactRefId ?? node.id)
-          else {
-            const profileKey = linkedinProfileKey(node.profileUrl)
-            meStore.addContact(node.label, organization, {
-              id: node.id,
-              identity: personIdentity(node),
-              profile_key: profileKey || undefined,
-            })
-            if (!node.manualNeedsName) intros.deepExpand(node.id)
+      tutorialPreviewActive && !selectedNode ? (
+        <div className="flex flex-col gap-3">
+          <p className="inline-flex self-start rounded-full border border-brand/25 bg-brand-soft px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.11em] text-brand">
+            Walkthrough example
+          </p>
+          <NetworkDetail
+            node={TUTORIAL_PREVIEW.targetNode}
+            network={TUTORIAL_PREVIEW.network}
+            path={
+              currentTutorialStep.id === 'intros-graph'
+                ? previewPath
+                : TUTORIAL_PREVIEW.targetPath
+            }
+            me={introProfile?.name ? introProfile : TUTORIAL_PREVIEW.me}
+            idea={state.query.idea}
+            onExpand={() => {}}
+            onSelectNode={(id) => setPreviewSelection(id ?? TUTORIAL_PREVIEW.targetId)}
+            isContact={false}
+            onToggleContact={() => {}}
+            onLoadDossier={() => {}}
+            researchEnabled={false}
+            onEditManual={() => {}}
+          />
+        </div>
+      ) : (
+        <NetworkDetail
+          node={selectedNode}
+          network={intros.network}
+          path={selectedPath}
+          me={introProfile ?? EMPTY_PROFILE}
+          idea={state.query.idea}
+          expandState={selectedNode ? intros.expandStates[selectedNode.id] : undefined}
+          onExpand={researchNode}
+          onSelectNode={onIntroSelect}
+          isContact={selectedIsContact}
+          onToggleContact={(node, organization) => {
+            if (selectedIsContact) meStore.removeContact(node.label, node.contactRefId ?? node.id)
+            else {
+              const profileKey = linkedinProfileKey(node.profileUrl)
+              meStore.addContact(node.label, organization, {
+                id: node.id,
+                identity: personIdentity(node),
+                profile_key: profileKey || undefined,
+              })
+              if (!node.manualNeedsName) intros.deepExpand(node.id)
+            }
+          }}
+          dossier={
+            selectedNode?.target === 'partner' && selectedNode.fund
+              ? intros.dossiers[introKey(selectedNode.label, selectedNode.fund)]
+              : undefined
           }
-        }}
-        dossier={
-          selectedNode?.target === 'partner' && selectedNode.fund
-            ? intros.dossiers[introKey(selectedNode.label, selectedNode.fund)]
-            : undefined
-        }
-        onLoadDossier={() => {
-          if (selectedNode?.fund)
-            intros.loadDossier(introKey(selectedNode.label, selectedNode.fund))
-        }}
-        researchEnabled={!!introTarget}
-        onEditManual={editManualPerson}
-      />
+          onLoadDossier={() => {
+            if (selectedNode?.fund)
+              intros.loadDossier(introKey(selectedNode.label, selectedNode.fund))
+          }}
+          researchEnabled={!!introTarget}
+          onEditManual={editManualPerson}
+        />
+      )
     ) : (
       <DetailPanel
         selection={selection}
@@ -734,6 +814,7 @@ export function IdeaResults({
               type="button"
               variant="outline"
               size="sm"
+              disabled={tutorialOpen && tutorialLocked}
               className="shrink-0 rounded-full"
               onClick={() => {
                 if (tutorialOpen) setTutorialOpen(false)
@@ -744,7 +825,7 @@ export function IdeaResults({
               }}
             >
               <Compass className="size-3.5 text-brand" aria-hidden />
-              {tutorialOpen ? 'Hide walkthrough' : 'Walkthrough'}
+              {tutorialOpen ? 'Walkthrough active' : 'Walkthrough'}
             </Button>
           </div>
         </div>
@@ -764,13 +845,22 @@ export function IdeaResults({
             intros={intros.progress}
           />
         </div>
+        {!isXl && tutorialPreviewActive && currentTutorialStep.id === 'drafts' && (
+          <div className="rounded-xl border border-border bg-card p-4">{detail}</div>
+        )}
         <ResultsTutorial
           open={tutorialOpen}
+          locked={tutorialLocked}
           paused={meFormOpen || !!manualForm || sheetVisible}
           stepIndex={tutorialStep}
+          maxVisitedStep={maxVisitedStep}
           onStepChange={(index) => applyTutorialStep(index, true)}
+          onFinish={finishTutorial}
           onClose={() => setTutorialOpen(false)}
         />
+        {!isXl && tutorialPreviewActive && currentTutorialStep.id === 'evidence' && (
+          <div className="rounded-xl border border-border bg-card p-4">{detail}</div>
+        )}
 
         {state.similar.status === 'error' && (
           <Alert variant="destructive">
@@ -797,7 +887,7 @@ export function IdeaResults({
           </div>
         )}
 
-        {(searching || matchCount > 0 || !!introProfile) && (
+        {(searching || matchCount > 0 || !!introProfile || tutorialPreviewActive) && (
           <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_370px]">
             <div className="min-w-0" data-tutorial="workspace-tabs">
               <Tabs
@@ -878,7 +968,9 @@ export function IdeaResults({
                       status={graphStatus}
                     />
                   ) : view === 'intros' ? (
-                    !introProfile ? (
+                    tutorialPreviewActive ? (
+                      introGraphView
+                    ) : !introProfile ? (
                       <IntroEmptyState onAddYourself={() => setMeFormOpen(true)} />
                     ) : introTotal === 0 ? (
                       <div className="flex flex-col gap-4">

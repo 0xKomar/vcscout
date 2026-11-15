@@ -14,13 +14,25 @@ export default function App() {
   const discovery = useDiscovery()
   const [view, setView] = useState<View>({ kind: 'landing' })
   const [runId, setRunId] = useState(0)
+  const [walkthroughOnRun, setWalkthroughOnRun] = useState(true)
 
   const show = (next: View) => {
     setView(next)
     window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
-  const submitIdea = (query: IdeaQuery) => {
+  const submitFromLanding = (query: IdeaQuery) => {
+    const skip =
+      typeof window !== 'undefined' &&
+      window.localStorage.getItem('vcscout:skip-walkthrough') === '1'
+    setWalkthroughOnRun(!skip)
+    setRunId((id) => id + 1)
+    discovery.start(query)
+    show({ kind: 'idea' })
+  }
+
+  const submitRefinement = (query: IdeaQuery) => {
+    setWalkthroughOnRun(false)
     setRunId((id) => id + 1)
     discovery.start(query)
     show({ kind: 'idea' })
@@ -41,13 +53,14 @@ export default function App() {
           onStartSearch={focusHeroQuery}
         />
         {view.kind === 'landing' && (
-          <LandingPage onSubmitIdea={submitIdea} />
+          <LandingPage onSubmitIdea={submitFromLanding} />
         )}
         {view.kind === 'idea' && discovery.state && (
           <IdeaResults
             key={runId}
             state={discovery.state}
-            onSubmitIdea={submitIdea}
+            initialWalkthrough={walkthroughOnRun}
+            onSubmitIdea={submitRefinement}
             retrySimilar={discovery.retrySimilar}
             retryCompany={discovery.retryCompany}
           />

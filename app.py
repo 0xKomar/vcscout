@@ -9,6 +9,8 @@ import threading
 import time
 import traceback
 import unicodedata
+import base64
+import hmac
 from concurrent.futures import ThreadPoolExecutor
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -48,12 +50,13 @@ FOUNDERS = {
 founders_cache = {}
 founder_slots = threading.BoundedSemaphore(2)
 
-LINKEDIN_CACHE = ROOT / '.cache' / 'linkedin.json'
+CACHE_DIR = Path(os.environ.get('VCSCOUT_CACHE_DIR', str(ROOT / '.cache')))
+LINKEDIN_CACHE = CACHE_DIR / 'linkedin.json'
 linkedin_lock = threading.Lock()
 linkedin_slots = threading.BoundedSemaphore(2)
 
-PEOPLE_CACHE = ROOT / '.cache' / 'people.json'
-ENTITIES_CACHE = ROOT / '.cache' / 'entities.json'
+PEOPLE_CACHE = CACHE_DIR / 'people.json'
+ENTITIES_CACHE = CACHE_DIR / 'entities.json'
 SAVED_DOSSIERS = ROOT / 'research' / 'saved-dossiers.json'
 people_lock = threading.Lock()
 entity_lock = threading.Lock()
@@ -830,7 +833,29 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
+    def authorized(self):
+        password = os.environ.get('VCSCOUT_ACCESS_PASSWORD', '')
+        if not password:
+            return True
+        expected = base64.b64encode(('vcscout:' + password).encode()).decode()
+        supplied = self.headers.get('Authorization', '')
+        if hmac.compare_digest(supplied.encode(), ('Basic ' + expected).encode()):
+            return True
+        body = b'Authentication required.'
+        self.send_response(401)
+        self.send_header('WWW-Authenticate', 'Basic realm="VCScout", charset="UTF-8"')
+        self.send_header('Content-Type', 'text/plain; charset=utf-8')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+        return False
+
     def do_GET(self):
+        if urlsplit(self.path).path == '/healthz':
+            ready = (DIST / 'index.html').is_file()
+            return self.json_response(200 if ready else 503, {'status': 'ok' if ready else 'missing_frontend'})
+        if not self.authorized():
+            return
         if urlsplit(self.path).path == '/api/examples':
             summary = json.loads((ROOT / 'research/results-summary.json').read_text())
             names = sorted({row['company'] for row in summary['round_records']})
@@ -838,6 +863,8 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
+        if not self.authorized():
+            return
         path = urlsplit(self.path).path
         if path not in ('/api/search', '/api/partners', '/api/similar', '/api/risks', '/api/fund-paths', '/api/person-investments', '/api/linkedin', '/api/founders',
                         '/api/me', '/api/dossier', '/api/network', '/api/rank'):
@@ -1345,6 +1372,8 @@ class Handler(SimpleHTTPRequestHandler):
 if __name__ == '__main__':
     if not (DIST / 'index.html').exists():
         print('Frontend build not found. Run: cd web && npm install && npm run build')
-    server = ThreadingHTTPServer(('127.0.0.1', 8765), Handler)
-    print('VCScout: http://127.0.0.1:8765', flush=True)
+    port = int(os.environ.get('PORT', '8765'))
+    host = os.environ.get('HOST', '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1')
+    server = ThreadingHTTPServer((host, port), Handler)
+    print(f'VCScout listening on {host}:{port}', flush=True)
     server.serve_forever()

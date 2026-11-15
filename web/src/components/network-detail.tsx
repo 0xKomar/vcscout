@@ -393,7 +393,7 @@ export function NetworkDetail({
         </div>
       </div>
 
-      <section className="flex flex-col gap-1.5">
+      <section data-tutorial="connection-evidence" className="flex flex-col gap-1.5">
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
           How you connect
         </p>
@@ -487,7 +487,7 @@ export function NetworkDetail({
       </section>
 
       {target && (
-        <section className="flex flex-col gap-2">
+        <section data-tutorial="message-drafts" className="flex flex-col gap-2">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
             Message drafts
           </p>

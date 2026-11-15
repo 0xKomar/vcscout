@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+.cache
+**/__pycache__
+**/*.pyc
+**/node_modules
+web/dist
+research/cala-runs
+tools/e2e-*.mjs
+*.tar
+*.tar.gz
+*.png
+*.mp4
+.DS_Store

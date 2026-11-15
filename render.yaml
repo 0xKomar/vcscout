@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: vcscout
+    runtime: docker
+    plan: free
+    region: frankfurt
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    envVars:
+      - key: CALA_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: VCSCOUT_ACCESS_PASSWORD
+        generateValue: true

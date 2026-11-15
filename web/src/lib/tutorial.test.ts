@@ -1,24 +1,45 @@
 import { describe, expect, it } from 'vitest'
-import { clampSpotlightRect, TUTORIAL_STEPS } from '@/lib/tutorial'
+import { pathLinks } from '@/lib/network'
+import { clampSpotlightRect, TUTORIAL_PREVIEW, TUTORIAL_STEPS } from '@/lib/tutorial'
 
 describe('TUTORIAL_STEPS', () => {
-  it('walks through all core views and ends on Warm intros ready for action', () => {
-    expect(TUTORIAL_STEPS).toHaveLength(6)
-    expect(TUTORIAL_STEPS[0].tab).toBe('map')
-    expect(TUTORIAL_STEPS[0].view).toBe('intros')
+  it('covers all 8 steps including graph usage, linked sources, and generated message drafts', () => {
+    expect(TUTORIAL_STEPS).toHaveLength(8)
     expect(TUTORIAL_STEPS.map((step) => step.id)).toEqual([
       'pipeline',
       'similar',
       'paths',
       'graph',
       'risks',
-      'intros',
+      'intros-graph',
+      'evidence',
+      'drafts',
     ])
     const pathsStep = TUTORIAL_STEPS.find((step) => step.id === 'paths')
     expect(pathsStep?.takeaway.toLowerCase()).toContain('dead end')
-    const last = TUTORIAL_STEPS[TUTORIAL_STEPS.length - 1]
-    expect(last.tab).toBe('map')
-    expect(last.view).toBe('intros')
+
+    const graphStep = TUTORIAL_STEPS.find((step) => step.id === 'intros-graph')
+    expect(graphStep?.previewIntro).toBe(true)
+    expect(graphStep?.interactiveSpotlight).toBe(true)
+
+    const evidenceStep = TUTORIAL_STEPS.find((step) => step.id === 'evidence')
+    expect(evidenceStep?.targets).toEqual(['connection-evidence'])
+    expect(evidenceStep?.dockSide).toBe('left')
+
+    const draftsStep = TUTORIAL_STEPS.find((step) => step.id === 'drafts')
+    expect(draftsStep?.targets).toEqual(['message-drafts'])
+    expect(draftsStep?.dockSide).toBe('left')
+    expect(draftsStep?.interactiveSpotlight).toBe(true)
+  })
+})
+
+describe('TUTORIAL_PREVIEW', () => {
+  it('builds a multi-hop illustrative path with self, documented, and inferred source links', () => {
+    const links = pathLinks(TUTORIAL_PREVIEW.network, TUTORIAL_PREVIEW.targetPath)
+    expect(links.map((link) => link.kind)).toEqual(['self', 'documented', 'inferred'])
+    expect(TUTORIAL_PREVIEW.targetNode.label).toBe('Clara Lindqvist')
+    expect(TUTORIAL_PREVIEW.pathIds.nodes.has('p:maya')).toBe(true)
+    expect(TUTORIAL_PREVIEW.pathIds.nodes.has('p:liam')).toBe(false)
   })
 })
 

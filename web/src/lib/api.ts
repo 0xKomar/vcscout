@@ -17,7 +17,7 @@ import type {
 } from './types'
 
 const CONNECTION_ERROR =
-  'Cannot connect to the VCScout server. Run python3 app.py and try again.'
+  'Cannot connect to VCScout. Please try again in a moment.'
 
 async function readJson(response: Response): Promise<unknown> {
   try {

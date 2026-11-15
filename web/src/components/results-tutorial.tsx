@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useState } from 'react'
-import { ArrowLeft, ArrowRight, Check, ChevronDown, Lightbulb, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, ChevronDown, Lightbulb, Lock, X } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Button } from '@/components/ui/button'
 import { clampSpotlightRect, TUTORIAL_STEPS, type SpotlightRect } from '@/lib/tutorial'
@@ -7,17 +7,23 @@ import { cn } from '@/lib/utils'
 
 interface ResultsTutorialProps {
   open: boolean
+  locked: boolean
   paused?: boolean
   stepIndex: number
+  maxVisitedStep: number
   onStepChange: (index: number) => void
+  onFinish: () => void
   onClose: () => void
 }
 
 export function ResultsTutorial({
   open,
+  locked,
   paused = false,
   stepIndex,
+  maxVisitedStep,
   onStepChange,
+  onFinish,
   onClose,
 }: ResultsTutorialProps) {
   const maskId = useId()
@@ -78,7 +84,7 @@ export function ResultsTutorial({
     const onKeyDown = (event: KeyboardEvent) => {
       const tag = (event.target as HTMLElement | null)?.tagName
       const editable = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT'
-      if (event.key === 'Escape') {
+      if (!locked && event.key === 'Escape') {
         event.preventDefault()
         onClose()
       } else if (!editable && event.key === 'ArrowRight' && stepIndex < TUTORIAL_STEPS.length - 1) {
@@ -91,11 +97,13 @@ export function ResultsTutorial({
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [active, onClose, onStepChange, stepIndex])
+  }, [active, locked, onClose, onStepChange, stepIndex])
 
   if (!active) return null
 
   const isLast = stepIndex >= TUTORIAL_STEPS.length - 1
+  const interactiveHole = step.interactiveSpotlight && rects[0] ? rects[0] : null
+  const dockLeft = step.dockSide === 'left'
 
   return (
     <>
@@ -127,7 +135,7 @@ export function ResultsTutorial({
             y="0"
             width="100%"
             height="100%"
-            fill="rgba(14, 34, 53, 0.46)"
+            fill="rgba(14, 34, 53, 0.48)"
             mask={`url(#${maskId})`}
           />
           {rects.map((rect, index) => (
@@ -147,6 +155,41 @@ export function ResultsTutorial({
         </svg>
       </div>
 
+      {interactiveHole ? (
+        <div data-testid="tutorial-blocker" aria-hidden="true">
+          <div
+            className="pointer-events-auto fixed inset-x-0 top-0 z-[46]"
+            style={{ height: interactiveHole.y }}
+          />
+          <div
+            className="pointer-events-auto fixed inset-x-0 bottom-0 z-[46]"
+            style={{ top: interactiveHole.y + interactiveHole.height }}
+          />
+          <div
+            className="pointer-events-auto fixed left-0 z-[46]"
+            style={{
+              top: interactiveHole.y,
+              width: interactiveHole.x,
+              height: interactiveHole.height,
+            }}
+          />
+          <div
+            className="pointer-events-auto fixed right-0 z-[46]"
+            style={{
+              top: interactiveHole.y,
+              left: interactiveHole.x + interactiveHole.width,
+              height: interactiveHole.height,
+            }}
+          />
+        </div>
+      ) : (
+        <div
+          data-testid="tutorial-blocker"
+          aria-hidden="true"
+          className="pointer-events-auto fixed inset-0 z-[46]"
+        />
+      )}
+
       <motion.section
         data-testid="results-tutorial"
         role="region"
@@ -154,7 +197,10 @@ export function ResultsTutorial({
         initial={reduceMotion ? false : { opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-auto relative z-[48] rounded-2xl border border-[#cde0e7] bg-card p-4 shadow-[0_24px_70px_-20px_rgba(14,42,63,0.45)] xl:fixed xl:right-6 xl:bottom-6 xl:max-h-[78vh] xl:w-[390px] xl:overflow-y-auto xl:p-5"
+        className={cn(
+          'pointer-events-auto relative z-[48] rounded-2xl border border-[#cde0e7] bg-card p-4 shadow-[0_24px_70px_-20px_rgba(14,42,63,0.45)] xl:fixed xl:bottom-6 xl:max-h-[80vh] xl:w-[400px] xl:overflow-y-auto xl:p-5',
+          dockLeft ? 'xl:left-6 xl:right-auto' : 'xl:right-6 xl:left-auto',
+        )}
       >
         <div className="flex items-center justify-between gap-2">
           <div className="flex min-w-0 items-center gap-2">
@@ -179,38 +225,44 @@ export function ResultsTutorial({
                 aria-hidden
               />
             </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="size-7 text-muted-foreground"
-              aria-label="Close tutorial"
-              onClick={onClose}
-            >
-              <X className="size-4" aria-hidden />
-            </Button>
+            {!locked && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="size-7 text-muted-foreground"
+                aria-label="Close tutorial"
+                onClick={onClose}
+              >
+                <X className="size-4" aria-hidden />
+              </Button>
+            )}
           </div>
         </div>
 
         <div className="mt-2.5 flex items-center gap-1" role="tablist" aria-label="Tutorial steps">
-          {TUTORIAL_STEPS.map((entry, index) => (
-            <button
-              key={entry.id}
-              type="button"
-              role="tab"
-              aria-selected={index === stepIndex}
-              aria-label={`Step ${index + 1}: ${entry.title}`}
-              onClick={() => onStepChange(index)}
-              className={cn(
-                'h-1.5 flex-1 rounded-full transition-colors',
-                index === stepIndex
-                  ? 'bg-brand'
-                  : index < stepIndex
-                    ? 'bg-brand/35 hover:bg-brand/55'
-                    : 'bg-secondary hover:bg-muted-foreground/25',
-              )}
-            />
-          ))}
+          {TUTORIAL_STEPS.map((entry, index) => {
+            const disabled = locked && index > maxVisitedStep
+            return (
+              <button
+                key={entry.id}
+                type="button"
+                role="tab"
+                disabled={disabled}
+                aria-selected={index === stepIndex}
+                aria-label={`Step ${index + 1}: ${entry.title}`}
+                onClick={() => !disabled && onStepChange(index)}
+                className={cn(
+                  'h-1.5 flex-1 rounded-full transition-colors disabled:cursor-not-allowed',
+                  index === stepIndex
+                    ? 'bg-brand'
+                    : index <= maxVisitedStep
+                      ? 'bg-brand/35 hover:bg-brand/55'
+                      : 'bg-secondary',
+                )}
+              />
+            )
+          })}
         </div>
 
         <h2 className="mt-3 font-serif text-lg leading-snug tracking-[-0.025em] sm:text-xl">
@@ -235,10 +287,17 @@ export function ResultsTutorial({
         )}
 
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3">
-          <Button type="button" variant="ghost" size="sm" className="px-2 text-xs" onClick={onClose}>
-            Skip tutorial
-          </Button>
-          <div className="flex items-center gap-1.5">
+          {locked ? (
+            <span className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground">
+              <Lock className="size-3 text-brand" aria-hidden />
+              {isLast ? 'Ready to unlock exploration' : 'Finish walkthrough to explore'}
+            </span>
+          ) : (
+            <Button type="button" variant="ghost" size="sm" className="px-2 text-xs" onClick={onClose}>
+              Close walkthrough
+            </Button>
+          )}
+          <div className="ml-auto flex items-center gap-1.5">
             {stepIndex > 0 && (
               <Button
                 type="button"
@@ -251,7 +310,7 @@ export function ResultsTutorial({
               </Button>
             )}
             {isLast ? (
-              <Button type="button" size="sm" onClick={onClose}>
+              <Button type="button" size="sm" onClick={onFinish}>
                 Start exploring
                 <Check className="size-3.5" aria-hidden />
               </Button>

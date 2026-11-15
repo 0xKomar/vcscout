@@ -22,6 +22,23 @@ Otwórz http://127.0.0.1:8765. Aplikacja nasłuchuje tylko lokalnie; klucz pozos
 
 W jednym terminalu `python3 app.py` (w tym katalogu), w drugim `cd web && npm run dev`, potem otwórz http://127.0.0.1:5173 — Vite przekazuje zapytania `/api` do serwera Pythona. Testy logiki: `cd web && npm test`; lint: `cd web && npm run lint`.
 
+### Deploy na Render
+
+Repo zawiera `render.yaml` i wieloetapowy `Dockerfile`, który buduje frontend i uruchamia backend z `curl`. [Utwórz Blueprint na Render](https://render.com/deploy?repo=https://github.com/0xKomar/vcscout) i podaj `CALA_API_KEY` oraz `OPENAI_API_KEY` jako sekrety środowiska. Konfiguracja wybiera bezpłatny serwis we Frankfurcie. Plik `.env`, lokalne kontakty i cache nie trafiają do obrazu.
+
+Render generuje `VCSCOUT_ACCESS_PASSWORD`. Odczytaj je w ustawieniach środowiska serwisu; login do aplikacji to `vcscout`. Hasło chroni także endpointy korzystające z płatnych API. `/healthz` jest dostępny bez logowania i zwraca HTTP 200, gdy frontend jest zbudowany. Lokalnie hasło jest opcjonalne.
+
+Backend respektuje `HOST` i `PORT`, a katalog cache można ustawić przez `VCSCOUT_CACHE_DIR`. W kontenerze jest to zapisywalny `/tmp/vcscout-cache`. Bezpłatny Render usypia po bezczynności i usuwa pliki cache przy restarcie lub deployu; profil i kontakty pozostają w przeglądarce. Pierwsze otwarcie po uśpieniu może potrwać około minuty.
+
+Lokalne sprawdzenie kontenera:
+
+```sh
+docker build -t vcscout .
+docker run --rm -p 8765:10000 --env-file .env vcscout
+```
+
+Test konfiguracji hostingu bez zapytań do Cala/OpenAI: `python3 tools/test_hosting.py`.
+
 Tryb „Mam pomysł” wysyła opis do Cala, proponuje podobne spółki i pobiera ich historie finansowania. Mapa pokazuje inwestorów prowadzących rundy na wybranym etapie oraz inwestorów, którzy prowadzili późniejsze rundy **tej samej podobnej spółki**. Linie oznaczają obserwowaną chronologię, nie potwierdzoną relację lub intro. Kliknij fundusz, a następnie osobę, żeby zobaczyć źródło i edytowalny szkic wiadomości. Tryb „Znam startup” pozwala wyszukać konkretną firmę. Szkic pozostaje w przeglądarce i aplikacja niczego nie wysyła automatycznie. Sekcja „Inne startupy tych funduszy” pokazuje, gdzie trafiały inne startupy z portfela funduszy z mapy: te, które przeszły tę samą ścieżkę (fundusz na Twoim etapie → ten sam kolejny inwestor co podobne spółki) oraz alternatywne ścieżki do innych funduszy. Na mapie linia ciągła to nadal chronologia rund podobnych spółek, a linia przerywana to inne startupy z portfela — niekoniecznie podobne do Twojego pomysłu. Każde wyszukanie to jedno zapytanie do Cala na fundusz (około minuty, zużywa kredyty; przycisk zbiorczy wykonuje do 6 zapytań) i wyniki są zapamiętane do restartu serwera. Przykłady z Cala nie są pełnym portfelem ani statystyką przejść i żadna linia nie oznacza potwierdzonej relacji ani intro.
 
 Widok „Graf powiązań” w zakładce „Mapa inwestorów” pokazuje interaktywny graf w stylu bizraport: węzły to spółki i osoby, a krawędzie to publicznie opisane rundy i powiązania. Trasa dla Twojego pomysłu pozostaje wyróżniona na stałe, a filtr „Tylko trasa” zawęża widok do niej. Pole „Znajdź w grafie” wyszukuje i centruje dowolny węzeł. Przycisk „Zobacz więcej” na funduszu, osobie lub odkrytym startupie wykonuje jedno zapytanie do Cala (około minuty, zużywa kredyty) i dokłada znalezione powiązania do grafu — dla osoby są to inne inwestycje, przy których jest publicznie powiązana z funduszem.
