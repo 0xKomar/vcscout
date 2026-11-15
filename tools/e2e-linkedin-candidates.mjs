@@ -32,6 +32,7 @@ async function main() {
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()) })
   await page.addInitScript(({ me, linkedin }) => {
     localStorage.setItem('vcscout:me', JSON.stringify(me))
+    localStorage.setItem('vcscout:skip-walkthrough', '1')
     localStorage.setItem('vcscout:linkedin-connections', JSON.stringify({
       fileName: 'connections.csv', importedAt: '2025-01-01', connections: linkedin,
     }))

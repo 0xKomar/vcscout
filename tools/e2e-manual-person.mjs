@@ -18,6 +18,7 @@ async function exercise(browser, viewport, label, noMatches = false) {
   page.on('pageerror', (error) => errors.push(String(error)))
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()) })
   await page.addInitScript(() => {
+    localStorage.setItem('vcscout:skip-walkthrough', '1')
     if (!localStorage.getItem('vcscout:me')) localStorage.setItem('vcscout:me', JSON.stringify({
       name: 'Alex Morgan', linkedin_url: 'https://www.linkedin.com/in/alex-morgan',
       employers: [], schools: [], contacts: [], facts: [], hidden: [],

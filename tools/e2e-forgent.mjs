@@ -18,6 +18,7 @@ async function main() {
   page.on('pageerror', (error) => errors.push(String(error)))
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()) })
   await page.addInitScript(() => {
+    localStorage.setItem('vcscout:skip-walkthrough', '1')
     localStorage.setItem('vcscout:me', JSON.stringify({
       name: 'Test Person', linkedin_url: '', employers: [], schools: [], contacts: [], hidden: [], facts: [],
     }))

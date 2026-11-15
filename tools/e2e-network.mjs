@@ -277,6 +277,7 @@ async function main() {
   await mockApi(page)
   await page.addInitScript((profile) => {
     localStorage.setItem('vcscout:me', JSON.stringify(profile))
+    localStorage.setItem('vcscout:skip-walkthrough', '1')
   }, PROFILE)
 
   await page.goto(BASE_URL, { waitUntil: 'networkidle' })
@@ -478,6 +479,7 @@ async function main() {
   await mockApi(mpage)
   await mpage.addInitScript((profile) => {
     localStorage.setItem('vcscout:me', JSON.stringify(profile))
+    localStorage.setItem('vcscout:skip-walkthrough', '1')
   }, PROFILE)
   await mpage.goto(BASE_URL, { waitUntil: 'networkidle' })
   await mpage.getByPlaceholder(/Describe what you're building/).fill(

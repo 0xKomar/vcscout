@@ -34,7 +34,10 @@ async function main() {
   const page = await context.newPage()
   page.on('pageerror', (error) => errors.push(String(error)))
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()) })
-  await page.addInitScript((value) => localStorage.setItem('vcscout:me', JSON.stringify(value)), profile)
+  await page.addInitScript((value) => {
+    localStorage.setItem('vcscout:me', JSON.stringify(value))
+    localStorage.setItem('vcscout:skip-walkthrough', '1')
+  }, profile)
   await page.route('**/api/*', async (route) => {
     const request = route.request()
     if (request.method() !== 'POST') return route.continue()
